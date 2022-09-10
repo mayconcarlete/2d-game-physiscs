@@ -40,7 +40,7 @@ export class Vec2 implements Operations<Vector2>{
     this.y *= value;
   }
   magnitude(): number {
-    throw new Error("Method not implemented.")
+    return Math.sqrt((this.x * this.x) + (this.y * this.y));
   }
   normalize(): void {
     throw new Error("Method not implemented.")

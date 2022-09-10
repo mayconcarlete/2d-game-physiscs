@@ -48,3 +48,10 @@ console.log(resultDot)
 const k = new Vec2(2, 2);
 k.scale(2)
 k.printVector()
+
+//////////////////////////
+// Magnitude vector type vector2
+//////////////////////////
+const l = new Vec2(8, 6);
+const resultMagnitude = l.magnitude()
+console.log(resultMagnitude)
