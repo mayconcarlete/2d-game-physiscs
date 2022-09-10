@@ -55,3 +55,10 @@ k.printVector()
 const l = new Vec2(8, 6);
 const resultMagnitude = l.magnitude()
 console.log(resultMagnitude)
+
+//////////////////////////
+// Normalize vector type vector2
+//////////////////////////
+const m = new Vec2(8, 6);
+m.normalize()
+m.printVector()

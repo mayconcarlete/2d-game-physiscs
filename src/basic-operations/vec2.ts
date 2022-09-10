@@ -43,7 +43,9 @@ export class Vec2 implements Operations<Vector2>{
     return Math.sqrt((this.x * this.x) + (this.y * this.y));
   }
   normalize(): void {
-    throw new Error("Method not implemented.")
+    const magnitude = this.magnitude();
+    this.x /= magnitude;
+    this.y /= magnitude;
   }
   cross(v: Vector2): Vector2 | undefined{
     console.log("not cross vector with length 2.");
