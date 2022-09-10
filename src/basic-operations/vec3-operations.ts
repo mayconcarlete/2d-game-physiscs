@@ -29,10 +29,19 @@ export class Vec3 implements Operations<Vector3>{
     return result
   }
   sub(v: Vector3): void {
-    throw new Error("Method not implemented.");
+    this.x -= v.x;
+    this.y -= v.y;
+    this.z -= v.z;
+  }
+  static sub(a: Vector3, b: Vector3): Vector3{
+    const result = new Vec3(0, 0, 0);
+    result.x = a.x - b.x;
+    result.y = a.y - b.y;
+    result.z = a.z - b.z;
+    return result;
   }
   dot(v: Vector3): number {
-    throw new Error("Method not implemented.");
+    return (this.x * v.x + this.y * v.y + this.z * v.z);
   }
   scale(value: number): void {
     throw new Error("Method not implemented.");

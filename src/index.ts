@@ -72,10 +72,34 @@ const o = new Vec3(2, 2, 2);
 n.sum(o)
 n.printVector()
 
-// //////////////////////////
-// // sum 2 vectors type vector2
-// //////////////////////////
+//////////////////////////
+// sum 2 vectors type vector3
+//////////////////////////
 const p = new Vec3(2, 2, 2);
 const q = new Vec3(2, 2, 2);
-const resultSum = Vec3.sum(p, q);
-Vec3.printVector(resultSum);
+const resultSum3 = Vec3.sum(p, q);
+Vec3.printVector(resultSum3);
+
+//////////////////////////
+// sub S in r type vector3
+//////////////////////////
+const r = new Vec3(2, 2, 2);
+const s = new Vec3(2, 2, 2);
+r.sub(s)
+r.printVector()
+
+//////////////////////////
+// sub 2 vectors type vector3
+//////////////////////////
+const t = new Vec3(1, 1, 1);
+const u = new Vec3(2, 2, 2);
+const resultSub3 = Vec3.sub(t, u);
+Vec3.printVector(resultSub3);
+
+//////////////////////////
+// Dot S in r type vector3
+//////////////////////////
+const v = new Vec3(2, 2, 2);
+const w = new Vec3(2, 2, 2);
+const resultDot3 = v.dot(w);
+console.log(resultDot3);
