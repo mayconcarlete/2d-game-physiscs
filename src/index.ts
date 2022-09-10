@@ -97,7 +97,7 @@ const resultSub3 = Vec3.sub(t, u);
 Vec3.printVector(resultSub3);
 
 //////////////////////////
-// Dot v in r type vector3
+// Dot v in w type vector3
 //////////////////////////
 const v = new Vec3(2, 2, 2);
 const w = new Vec3(2, 2, 2);
@@ -105,15 +105,32 @@ const resultDot3 = v.dot(w);
 console.log(resultDot3);
 
 //////////////////////////
-// Scale x in r type vector3
+// Scale x type vector3
 //////////////////////////
 const x = new Vec3(2, 2, 2);
 x.scale(2);
 x.printVector()
 
 //////////////////////////
-// Magnitude S in r type vector3
+// Magnitude y vector3
 //////////////////////////
 const y = new Vec3(4, 5, 6);
 const resultMagnitude3 = y.magnitude();
 console.log(resultMagnitude3)
+
+//////////////////////////
+// Normalize z type vector3
+//////////////////////////
+const z = new Vec3(4, 5, 6);
+z.normalize();
+const mag = z.magnitude();
+console.log(mag);
+z.printVector();
+
+//////////////////////////
+// cross z1 with z2 type vector3
+//////////////////////////
+const z1 = new Vec3(1, 1, 1);
+const z2 = new Vec3(1, 1, 1);
+const resultCross3 = z1.cross(z2)
+Vec3.printVector(resultCross3!)

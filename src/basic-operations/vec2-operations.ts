@@ -49,7 +49,7 @@ export class Vec2 implements Operations<Vector2>{
   }
   cross(v: Vector2): Vector2 | undefined{
     console.log("not cross vector with length 2.");
-    return undefined
+    return undefined;
   }
   printVector(): void{
     console.log(`X: ${this.x} - Y: ${this.y}`);

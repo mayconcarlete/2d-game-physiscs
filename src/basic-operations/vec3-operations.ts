@@ -52,10 +52,17 @@ export class Vec3 implements Operations<Vector3>{
     return Math.sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
   }
   normalize(): void {
-    throw new Error("Method not implemented.");
+    const magnitude = this.magnitude();
+    this.x /= magnitude;
+    this.y /= magnitude;
+    this.z /= magnitude;
   }
-  cross(v: Vector3): Vector3 | undefined {
-    throw new Error("Method not implemented.");
+  cross(v: Vector3): Vec3 | undefined {
+    const dot = new Vec3(0, 0, 0,);
+    dot.x = this.y * v.z - this.z * v.y;
+    dot.y = this.z * v.x - this.x * v.z;
+    dot.z = this.x * v.y - this.y * v.x;
+    return dot;
   }
   printVector(): void {
     console.log(`X: ${this.x} - Y: ${this.y} - Z: ${this.z}`);
