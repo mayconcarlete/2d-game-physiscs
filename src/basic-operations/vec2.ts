@@ -32,11 +32,12 @@ export class Vec2 implements Operations<Vector2>{
     result.y = a.y - b.y;
     return result
   }
-  dotMultiplication(v: Vector2): void {
-    throw new Error("Method not implemented.")
+  dot(v: Vector2): number {
+    return (this.x * v.x + this.y * v.y);
   }
   scale(value: number): void {
-    throw new Error("Method not implemented.")
+    this.x *= value;
+    this.y *= value;
   }
   magnitude(): number {
     throw new Error("Method not implemented.")
