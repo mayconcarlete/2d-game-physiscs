@@ -5,6 +5,6 @@ export interface Operations <T = any>{
   scale(value: number): void
   magnitude(): number
   normalize(): void
-  cross(v: T): T
+  cross(v: T): T | undefined
   printVector(): void
 }
