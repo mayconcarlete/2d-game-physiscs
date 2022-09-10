@@ -49,7 +49,7 @@ export class Vec3 implements Operations<Vector3>{
     this.z *= value;
   }
   magnitude(): number {
-    throw new Error("Method not implemented.");
+    return Math.sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
   }
   normalize(): void {
     throw new Error("Method not implemented.");

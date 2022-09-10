@@ -105,8 +105,15 @@ const resultDot3 = v.dot(w);
 console.log(resultDot3);
 
 //////////////////////////
-// Scale S in r type vector3
+// Scale x in r type vector3
 //////////////////////////
 const x = new Vec3(2, 2, 2);
 x.scale(2);
 x.printVector()
+
+//////////////////////////
+// Magnitude S in r type vector3
+//////////////////////////
+const y = new Vec3(4, 5, 6);
+const resultMagnitude3 = y.magnitude();
+console.log(resultMagnitude3)
