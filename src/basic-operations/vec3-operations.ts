@@ -44,7 +44,9 @@ export class Vec3 implements Operations<Vector3>{
     return (this.x * v.x + this.y * v.y + this.z * v.z);
   }
   scale(value: number): void {
-    throw new Error("Method not implemented.");
+    this.x *= value;
+    this.y *= value;
+    this.z *= value;
   }
   magnitude(): number {
     throw new Error("Method not implemented.");

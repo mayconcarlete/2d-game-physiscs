@@ -97,9 +97,16 @@ const resultSub3 = Vec3.sub(t, u);
 Vec3.printVector(resultSub3);
 
 //////////////////////////
-// Dot S in r type vector3
+// Dot v in r type vector3
 //////////////////////////
 const v = new Vec3(2, 2, 2);
 const w = new Vec3(2, 2, 2);
 const resultDot3 = v.dot(w);
 console.log(resultDot3);
+
+//////////////////////////
+// Scale S in r type vector3
+//////////////////////////
+const x = new Vec3(2, 2, 2);
+x.scale(2);
+x.printVector()
