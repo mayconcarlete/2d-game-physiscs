@@ -51,6 +51,12 @@ export class Vec2 implements Operations<Vector2>{
     console.log("not cross vector with length 2.");
     return undefined;
   }
+  rotate(angle: number):Vec2 {
+    const result = new Vec2(0, 0);
+    result.x = this.x * Math.cos(angle) - this.y * Math.sin(angle);
+    result.y = this.x * Math.sin(angle) + this.y * Math.cos(angle);
+    return result
+  }
   printVector(): void{
     console.log(`X: ${this.x} - Y: ${this.y}`);
   }

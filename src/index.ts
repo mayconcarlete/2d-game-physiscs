@@ -1,5 +1,5 @@
 import {Vec2, Vec3} from "./basic-operations"
-
+/*
 //////////////////////////
 // sum vector2
 // sum B in vector A
@@ -134,3 +134,4 @@ const z1 = new Vec3(1, 1, 1);
 const z2 = new Vec3(1, 1, 1);
 const resultCross3 = z1.cross(z2)
 Vec3.printVector(resultCross3!)
+*/
