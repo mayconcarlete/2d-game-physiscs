@@ -130,3 +130,10 @@ Vec2& Vec2::operator /= (const float n){
   y /= n;
   return *this;
 }
+
+Vec2 Vec2::operator - (){
+  Vec2 result;
+  result.x = x * -1;
+  result.y = y * -1;
+  return result;
+}
