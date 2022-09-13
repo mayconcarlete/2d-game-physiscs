@@ -8,6 +8,9 @@ class Vec2 {
   public:
     Vec2();
     Vec2(float x, float y);
+    ~Vec2() = default;
+    float GetX() const;
+    float GetY() const;
     void Print() const;
     void Add(const Vec2& v);
     void Sub(const Vec2& v);

@@ -9,6 +9,14 @@ Vec2::Vec2(float x, float y){
   this->y = y;
 }
 
+float Vec2::GetX() const {
+  return this->x;
+}
+
+float Vec2::GetY() const {
+  return this->y;
+}
+
 void Vec2::Print()const{
   std::cout << "X: " << this->x << std::endl;
   std::cout << "Y: " << this->y << std::endl;
