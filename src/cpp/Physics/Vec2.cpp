@@ -17,6 +17,14 @@ float Vec2::GetY() const {
   return this->y;
 }
 
+void Vec2::SetX(float x){
+  this->x = x;
+}
+
+void Vec2::SetY(float y){
+  this->y = y;
+}
+
 void Vec2::Print()const{
   std::cout << "X: " << this->x << std::endl;
   std::cout << "Y: " << this->y << std::endl;

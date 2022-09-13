@@ -11,6 +11,8 @@ class Vec2 {
     ~Vec2() = default;
     float GetX() const;
     float GetY() const;
+    void SetX(float x);
+    void SetY(float y);
     void Print() const;
     void Add(const Vec2& v);
     void Sub(const Vec2& v);

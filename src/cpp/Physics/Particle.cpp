@@ -19,3 +19,23 @@ float Particle::GetXPosition() const {
 float Particle::GetYPosition() const {
   return this->position.GetY();
 }
+
+void Particle::SetXPosition(float x){
+  this->position.SetX(x);
+}
+
+void Particle::SetYPosition(float y){
+  this->position.SetY(y);
+}
+
+void Particle::SetVelocity(float x, float y){
+  this->velocity = Vec2(x, y);
+}
+
+float Particle::GetXVelocity() const{
+  return this->velocity.GetX();
+}
+
+float Particle::GetYVelocity() const {
+  return this->velocity.GetY();
+}

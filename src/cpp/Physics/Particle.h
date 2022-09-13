@@ -14,6 +14,11 @@ class Particle {
     ~Particle();
     float GetXPosition() const;
     float GetYPosition() const;
+    void SetXPosition(float x);
+    void SetYPosition(float y);
+    void SetVelocity(float x, float y);
+    float GetXVelocity() const;
+    float GetYVelocity() const;
 };
 
 #endif

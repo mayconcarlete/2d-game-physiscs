@@ -1,5 +1,6 @@
 #include "Application.h"
 #include <iostream>
+#include "./Physics/Vec2.h"
 
 bool Application::IsRunning() {
     return running;
@@ -36,7 +37,11 @@ void Application::Input() {
 // Update function (called several times per second to update objects)
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Update() {
-    // TODO: update all objects in the scene
+    particle->SetVelocity(1.0, 1.0);
+    float updatedXPosition = particle->GetXPosition() + particle->GetXVelocity();
+    float updatedYPosition = particle->GetYPosition() + particle->GetYVelocity();
+    particle->SetXPosition(updatedXPosition);
+    particle->SetYPosition(updatedYPosition);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
