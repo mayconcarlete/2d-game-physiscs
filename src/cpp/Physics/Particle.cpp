@@ -39,3 +39,11 @@ float Particle::GetXVelocity() const{
 float Particle::GetYVelocity() const {
   return this->velocity.GetY();
 }
+
+void Particle::AddPosition(Vec2 position){
+  this->position.Add(position);
+}
+
+Vec2 Particle::GetVelocity() const {
+  return this->velocity;
+}

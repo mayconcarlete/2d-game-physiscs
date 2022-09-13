@@ -37,11 +37,8 @@ void Application::Input() {
 // Update function (called several times per second to update objects)
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Update() {
-    particle->SetVelocity(1.0, 1.0);
-    float updatedXPosition = particle->GetXPosition() + particle->GetXVelocity();
-    float updatedYPosition = particle->GetYPosition() + particle->GetYVelocity();
-    particle->SetXPosition(updatedXPosition);
-    particle->SetYPosition(updatedYPosition);
+    particle->SetVelocity(1.0, 0.0);
+    particle->AddPosition(particle->GetVelocity());
 }
 
 ///////////////////////////////////////////////////////////////////////////////

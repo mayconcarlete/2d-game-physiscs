@@ -19,6 +19,8 @@ class Particle {
     void SetVelocity(float x, float y);
     float GetXVelocity() const;
     float GetYVelocity() const;
+    void AddPosition(Vec2 position);
+    Vec2 GetVelocity() const;
 };
 
 #endif
