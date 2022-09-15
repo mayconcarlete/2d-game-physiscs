@@ -8,7 +8,9 @@ class Application {
     private:
         bool running = false;
         Particle* particle;
+
     public:
+        int timePreviousFrame;
         Application() = default;
         ~Application() = default;
         bool IsRunning();

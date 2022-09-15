@@ -1,6 +1,7 @@
 #include "Application.h"
 #include <iostream>
 #include "./Physics/Vec2.h"
+#include "./Physics/Contants.h"
 
 bool Application::IsRunning() {
     return running;
@@ -37,6 +38,16 @@ void Application::Input() {
 // Update function (called several times per second to update objects)
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Update() {
+    // todo
+    // Check if we are to fast and if so, waste some milliseconds until we reach the MILLISECONDS_PER_FRAME
+    int timeToWait = MILLISECONDS_PER_FRAME - (SDL_GetTicks() - this->timePreviousFrame);
+
+    if(timeToWait > 0){
+        SDL_Delay(timeToWait);
+    }
+
+    this->timePreviousFrame = SDL_GetTicks();
+
     particle->SetVelocity(1.0, 0.0);
     // particle->AddPosition(particle->GetVelocity());
     particle->GetPosition() += particle->GetVelocity();
