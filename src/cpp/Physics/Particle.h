@@ -12,6 +12,7 @@ class Particle {
   public:
     Particle(float x, float y, float mass);
     ~Particle();
+    Vec2& GetPosition();
     float GetXPosition() const;
     float GetYPosition() const;
     void SetXPosition(float x);
@@ -21,6 +22,8 @@ class Particle {
     float GetYVelocity() const;
     void AddPosition(Vec2 position);
     Vec2 GetVelocity() const;
+
+    Particle& operator += (const Vec2& v);
 };
 
 #endif

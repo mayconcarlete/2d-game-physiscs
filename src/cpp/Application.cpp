@@ -38,7 +38,8 @@ void Application::Input() {
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Update() {
     particle->SetVelocity(1.0, 0.0);
-    particle->AddPosition(particle->GetVelocity());
+    // particle->AddPosition(particle->GetVelocity());
+    particle->GetPosition() += particle->GetVelocity();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

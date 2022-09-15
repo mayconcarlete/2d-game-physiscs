@@ -20,6 +20,10 @@ float Particle::GetYPosition() const {
   return this->position.GetY();
 }
 
+Vec2& Particle::GetPosition() {
+  return this->position;
+}
+
 void Particle::SetXPosition(float x){
   this->position.SetX(x);
 }
@@ -46,4 +50,9 @@ void Particle::AddPosition(Vec2 position){
 
 Vec2 Particle::GetVelocity() const {
   return this->velocity;
+}
+
+Particle& Particle::operator += (const Vec2& v){
+  this->position.Add(v);
+  return *this;
 }
