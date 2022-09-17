@@ -39,16 +39,17 @@ void Application::Input() {
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Update() {
     // todo
-    // Check if we are to fast and if so, waste some milliseconds until we reach the MILLISECONDS_PER_FRAME
-    int timeToWait = MILLISECONDS_PER_FRAME - (SDL_GetTicks() - this->timePreviousFrame);
+    // move timePreviousFrame to static.
+    static int timePreviousFrame;
+    int timeToWait = MILLISECONDS_PER_FRAME - (SDL_GetTicks() - timePreviousFrame);
 
     if(timeToWait > 0){
         SDL_Delay(timeToWait);
     }
 
-    this->timePreviousFrame = SDL_GetTicks();
-
-    particle->SetVelocity(1.0, 0.0);
+    float deltaTime = (SDL_GetTicks() - timePreviousFrame) / 1000.0f;
+    timePreviousFrame = SDL_GetTicks();
+    particle->SetVelocity(100.0 * deltaTime, 30.0 * deltaTime);
     // particle->AddPosition(particle->GetVelocity());
     particle->GetPosition() += particle->GetVelocity();
 }

@@ -10,7 +10,6 @@ class Application {
         Particle* particle;
 
     public:
-        int timePreviousFrame;
         Application() = default;
         ~Application() = default;
         bool IsRunning();
