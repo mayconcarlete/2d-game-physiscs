@@ -1,7 +1,7 @@
 #include "Application.h"
 #include <iostream>
 #include "./Physics/Vec2.h"
-#include "./Physics/Contants.h"
+#include "./Physics/Constants.h"
 
 bool Application::IsRunning() {
     return running;
@@ -48,6 +48,9 @@ void Application::Update() {
     }
 
     float deltaTime = (SDL_GetTicks() - timePreviousFrame) / 1000.0f;
+    if(deltaTime > 0.01){
+        deltaTime = 0.01;
+    }
     timePreviousFrame = SDL_GetTicks();
     particle->SetVelocity(100.0 * deltaTime, 30.0 * deltaTime);
     // particle->AddPosition(particle->GetVelocity());
