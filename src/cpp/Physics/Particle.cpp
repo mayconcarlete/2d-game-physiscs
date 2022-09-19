@@ -4,6 +4,7 @@
 
 Particle::Particle(float x, float y, float mass){
   this->position = Vec2(x, y);
+  this->acceleration = Vec2();
   this->mass = mass;
   std::cout << "Particle constructor called!" << std::endl;
 }
@@ -32,8 +33,16 @@ void Particle::SetYPosition(float y){
   this->position.SetY(y);
 }
 
-void Particle::SetVelocity(float x, float y){
-  this->velocity = Vec2(x, y);
+void Particle::UpdateVelocity(){
+  this->velocity += this->acceleration;
+}
+
+void Particle::SetXVelocity(const float x){
+  this->velocity *= x
+}
+
+void Particle::SetYVelocity(const float y){
+  this->velocity.SetY(y);
 }
 
 float Particle::GetXVelocity() const{
@@ -55,4 +64,8 @@ Vec2 Particle::GetVelocity() const {
 Particle& Particle::operator += (const Vec2& v){
   this->position.Add(v);
   return *this;
+}
+
+void Particle::SetAcceleration(const Vec2 v){
+  this->acceleration = v;
 }

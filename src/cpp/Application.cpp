@@ -2,6 +2,7 @@
 #include <iostream>
 #include "./Physics/Vec2.h"
 #include "./Physics/Constants.h"
+#include "./Graphics.h"
 
 bool Application::IsRunning() {
     return running;
@@ -12,7 +13,8 @@ bool Application::IsRunning() {
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Setup() {
     running = Graphics::OpenWindow();
-    particle = new Particle(50, 100, 1.0);
+    particle = new Particle(500, 100, 1.0);
+    particle->radius = 4;
     // TODO: setup objects in the scene
 }
 
@@ -52,9 +54,17 @@ void Application::Update() {
         deltaTime = 0.01;
     }
     timePreviousFrame = SDL_GetTicks();
-    particle->SetVelocity(100.0 * deltaTime, 30.0 * deltaTime);
+
+    // particle->SetVelocity(100.0 * deltaTime, 30.0 * deltaTime);
     // particle->AddPosition(particle->GetVelocity());
-    particle->GetPosition() += particle->GetVelocity();
+    if(particle->GetXPosition() - particle->radius <=0){
+        particle->SetXPosition(particle->radius);
+        particle->SetXVelocity(-1);
+    }
+    particle->SetAcceleration(Vec2(0.0, 9.8 * PIXELS_PER_METER));
+    particle->UpdateVelocity();
+    particle->GetPosition() += particle->GetVelocity() * deltaTime;
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -62,7 +72,7 @@ void Application::Update() {
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Render() {
     Graphics::ClearScreen(0xFF056263);
-    Graphics::DrawFillCircle(particle->GetXPosition(), particle->GetYPosition(), 4, 0xFFFFFFFF);
+    Graphics::DrawFillCircle(particle->GetXPosition(), particle->GetYPosition(), particle->radius, 0xFFFFFFFF);
     Graphics::RenderFrame();
 }
 

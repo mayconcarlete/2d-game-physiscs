@@ -10,6 +10,7 @@ class Particle {
     Vec2 acceleration;
     float mass;
   public:
+    int radius;
     Particle(float x, float y, float mass);
     ~Particle();
     Vec2& GetPosition();
@@ -17,12 +18,14 @@ class Particle {
     float GetYPosition() const;
     void SetXPosition(float x);
     void SetYPosition(float y);
-    void SetVelocity(float x, float y);
+    void UpdateVelocity();
+    void SetXVelocity(const float x);
+    void SetYVelocity(const float y);
     float GetXVelocity() const;
     float GetYVelocity() const;
     void AddPosition(Vec2 position);
     Vec2 GetVelocity() const;
-
+    void SetAcceleration(const Vec2 v);
     Particle& operator += (const Vec2& v);
 };
 
