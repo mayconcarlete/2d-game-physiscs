@@ -63,18 +63,18 @@ void Application::Update() {
 
     if(particle->position.x - particle->radius <=0) {
         particle->position.x = particle->radius;
-        particle->velocity.x *= -1.0;
+        particle->velocity.x *= -0.5;
     } else if(particle->position.x + particle->radius >= Graphics::Width()){
         particle->position.x = Graphics::Width() - particle->radius;
-        particle->velocity.x *= -1.0;
+        particle->velocity.x *= -0.5;
     }
 
     if(particle->position.y - particle->radius <= 0 ){
         particle->position.y = particle->radius;
-        particle->velocity.y *= -1.0;
+        particle->velocity.y *= -0.5;
     } else if (particle->position.y + particle->radius >= Graphics::Height()){
         particle->position.y = Graphics::Height() - particle->radius;
-        particle->velocity.y *= -1.0;
+        particle->velocity.y *= -0.5;
     }
 
 
