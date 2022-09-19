@@ -13,7 +13,7 @@ bool Application::IsRunning() {
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Setup() {
     running = Graphics::OpenWindow();
-    particle = new Particle(500, 100, 1.0);
+    particle = new Particle(500, 0, 1.0);
     particle->radius = 4;
     // TODO: setup objects in the scene
 }
@@ -55,15 +55,28 @@ void Application::Update() {
     }
     timePreviousFrame = SDL_GetTicks();
 
-    // particle->SetVelocity(100.0 * deltaTime, 30.0 * deltaTime);
-    // particle->AddPosition(particle->GetVelocity());
-    if(particle->GetXPosition() - particle->radius <=0){
-        particle->SetXPosition(particle->radius);
-        particle->SetXVelocity(-1);
+    particle->acceleration.x = 2.0 * PIXELS_PER_METER;
+    particle->acceleration.y = 9.8 * PIXELS_PER_METER;
+
+    particle->velocity += particle->acceleration * deltaTime;
+    particle->position += particle->velocity * deltaTime;
+
+    if(particle->position.x - particle->radius <=0) {
+        particle->position.x = particle->radius;
+        particle->velocity.x *= -1.0;
+    } else if(particle->position.x + particle->radius >= Graphics::Width()){
+        particle->position.x = Graphics::Width() - particle->radius;
+        particle->velocity.x *= -1.0;
     }
-    particle->SetAcceleration(Vec2(0.0, 9.8 * PIXELS_PER_METER));
-    particle->UpdateVelocity();
-    particle->GetPosition() += particle->GetVelocity() * deltaTime;
+
+    if(particle->position.y - particle->radius <= 0 ){
+        particle->position.y = particle->radius;
+        particle->velocity.y *= -1.0;
+    } else if (particle->position.y + particle->radius >= Graphics::Height()){
+        particle->position.y = Graphics::Height() - particle->radius;
+        particle->velocity.y *= -1.0;
+    }
+
 
 }
 

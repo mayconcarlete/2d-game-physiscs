@@ -3,12 +3,12 @@
 
 class Vec2 {
   private:
-    float x;
-    float y;
   public:
     Vec2();
     Vec2(float x, float y);
     ~Vec2() = default;
+    float x;
+    float y;
     float GetX() const;
     float GetY() const;
     void SetX(float x);

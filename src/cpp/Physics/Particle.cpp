@@ -26,23 +26,15 @@ Vec2& Particle::GetPosition() {
 }
 
 void Particle::SetXPosition(float x){
-  this->position.SetX(x);
+  this->position.x = x;
 }
 
 void Particle::SetYPosition(float y){
-  this->position.SetY(y);
+  this->position.y = y;
 }
 
 void Particle::UpdateVelocity(){
   this->velocity += this->acceleration;
-}
-
-void Particle::SetXVelocity(const float x){
-  this->velocity *= x
-}
-
-void Particle::SetYVelocity(const float y){
-  this->velocity.SetY(y);
 }
 
 float Particle::GetXVelocity() const{
