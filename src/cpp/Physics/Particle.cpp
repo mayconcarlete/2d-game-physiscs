@@ -1,6 +1,7 @@
 #include "Vec2.h"
 #include "Particle.h"
 #include <iostream>
+#include "../Graphics.h"
 
 Particle::Particle(float x, float y, float mass){
   this->position = Vec2(x, y);
@@ -33,8 +34,27 @@ void Particle::SetYPosition(float y){
   this->position.y = y;
 }
 
-void Particle::UpdateVelocity(){
-  this->velocity += this->acceleration;
+void Particle::UpdateVelocity(const float deltaTime){
+    this->acceleration.x = 2.0 * PIXELS_PER_METER;
+    this->acceleration.y = 9.8 * PIXELS_PER_METER;
+    this->velocity += this->acceleration * deltaTime;
+    this->position += this->velocity * deltaTime;
+
+    if(this->position.x - this->radius <=0) {
+        this->position.x = this->radius;
+        this->velocity.x *= -0.5;
+    } else if(this->position.x + this->radius >= Graphics::Width()){
+        this->position.x = Graphics::Width() - this->radius;
+        this->velocity.x *= -0.5;
+    }
+
+    if(this->position.y - this->radius <= 0 ){
+        this->position.y = this->radius;
+        this->velocity.y *= -0.5;
+    } else if (this->position.y + this->radius >= Graphics::Height()){
+        this->position.y = Graphics::Height() - this->radius;
+        this->velocity.y *= -0.5;
+    }
 }
 
 float Particle::GetXVelocity() const{

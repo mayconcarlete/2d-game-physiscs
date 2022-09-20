@@ -2,7 +2,7 @@
 #define PARTICLE_H
 
 #include "Vec2.h"
-
+#include "Constants.h"
 class Particle {
   private:
   public:
@@ -18,7 +18,7 @@ class Particle {
     float GetYPosition() const;
     void SetXPosition(float x);
     void SetYPosition(float y);
-    void UpdateVelocity();
+    void UpdateVelocity(const float deltaTime);
     float GetXVelocity() const;
     float GetYVelocity() const;
     void AddPosition(Vec2 position);

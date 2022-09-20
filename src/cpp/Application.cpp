@@ -54,30 +54,7 @@ void Application::Update() {
         deltaTime = 0.01;
     }
     timePreviousFrame = SDL_GetTicks();
-
-    particle->acceleration.x = 2.0 * PIXELS_PER_METER;
-    particle->acceleration.y = 9.8 * PIXELS_PER_METER;
-
-    particle->velocity += particle->acceleration * deltaTime;
-    particle->position += particle->velocity * deltaTime;
-
-    if(particle->position.x - particle->radius <=0) {
-        particle->position.x = particle->radius;
-        particle->velocity.x *= -0.5;
-    } else if(particle->position.x + particle->radius >= Graphics::Width()){
-        particle->position.x = Graphics::Width() - particle->radius;
-        particle->velocity.x *= -0.5;
-    }
-
-    if(particle->position.y - particle->radius <= 0 ){
-        particle->position.y = particle->radius;
-        particle->velocity.y *= -0.5;
-    } else if (particle->position.y + particle->radius >= Graphics::Height()){
-        particle->position.y = Graphics::Height() - particle->radius;
-        particle->velocity.y *= -0.5;
-    }
-
-
+    particle->UpdateVelocity(deltaTime);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
