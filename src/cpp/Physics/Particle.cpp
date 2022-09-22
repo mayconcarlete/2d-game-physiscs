@@ -35,11 +35,9 @@ void Particle::SetYPosition(float y){
 }
 
 void Particle::UpdateVelocity(const float deltaTime){
-    this->acceleration.x = 2.0 * PIXELS_PER_METER;
+    this->acceleration.x = 0 * PIXELS_PER_METER;
     this->acceleration.y = 9.8 * PIXELS_PER_METER;
-    this->velocity += this->acceleration * deltaTime;
-    this->position += this->velocity * deltaTime;
-
+    this->Integrate(deltaTime);
     if(this->position.x - this->radius <=0) {
         this->position.x = this->radius;
         this->velocity.x *= -0.5;
@@ -55,6 +53,11 @@ void Particle::UpdateVelocity(const float deltaTime){
         this->position.y = Graphics::Height() - this->radius;
         this->velocity.y *= -0.5;
     }
+}
+
+void Particle::Integrate(const float dt){
+    this->velocity += this->acceleration * dt;
+    this->position += this->velocity * dt;
 }
 
 float Particle::GetXVelocity() const{

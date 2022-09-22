@@ -18,6 +18,7 @@ class Particle {
     float GetYPosition() const;
     void SetXPosition(float x);
     void SetYPosition(float y);
+    void Integrate(const float dt);
     void UpdateVelocity(const float deltaTime);
     float GetXVelocity() const;
     float GetYVelocity() const;
