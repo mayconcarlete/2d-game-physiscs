@@ -59,6 +59,14 @@ void Application::Update() {
         deltaTime = 0.01;
     }
     timePreviousFrame = SDL_GetTicks();
+    Vec2 wind = Vec2(3.0, 0.0);
+
+    for(auto particle: particles){
+        Vec2 weight = Vec2(0.0, particle->mass * 9.8 * PIXELS_PER_METER);
+        particle->AddForce(wind);
+        particle->AddForce(weight);
+    }
+
     for(auto particle: this->particles){
         particle->UpdateVelocity(deltaTime);
     }

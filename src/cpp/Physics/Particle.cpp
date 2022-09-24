@@ -75,11 +75,6 @@ void Particle::Integrate(const float dt){
 }
 
 void Particle::UpdateVelocity(const float deltaTime){
-    Vec2 wind = Vec2(0.0, 9.8 * PIXELS_PER_METER);
-    Vec2 wind2 = Vec2(2.0 * PIXELS_PER_METER, 0.0);
-    this->AddForce(wind);
-    this->AddForce(wind2);
-
 
     this->Integrate(deltaTime);
     if(this->position.x - this->radius <=0) {
