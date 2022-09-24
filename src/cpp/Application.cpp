@@ -13,8 +13,13 @@ bool Application::IsRunning() {
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Setup() {
     running = Graphics::OpenWindow();
-    particle = new Particle(500, 0, 1.0);
-    particle->radius = 4;
+    Particle* smallBall = new Particle(500, 0, 1.0);
+    Particle* bigBall = new Particle(500, 0, 3.0);
+    smallBall->radius = 4;
+    bigBall->radius = 12;
+    this->particles.push_back(smallBall);
+    this->particles.push_back(bigBall);
+
     // TODO: setup objects in the scene
 }
 
@@ -54,7 +59,9 @@ void Application::Update() {
         deltaTime = 0.01;
     }
     timePreviousFrame = SDL_GetTicks();
-    particle->UpdateVelocity(deltaTime);
+    for(auto particle: this->particles){
+        particle->UpdateVelocity(deltaTime);
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -62,7 +69,9 @@ void Application::Update() {
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Render() {
     Graphics::ClearScreen(0xFF056263);
-    Graphics::DrawFillCircle(particle->GetXPosition(), particle->GetYPosition(), particle->radius, 0xFFFFFFFF);
+    for(auto particle: this->particles){
+        Graphics::DrawFillCircle(particle->GetXPosition(), particle->GetYPosition(), particle->radius, 0xFFFFFFFF);
+    }
     Graphics::RenderFrame();
 }
 
@@ -71,6 +80,8 @@ void Application::Render() {
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Destroy() {
     // TODO: destroy all objects in the scene
-    delete particle;
+    for(auto particle: this->particles){
+        delete particle;
+    }
     Graphics::CloseWindow();
 }
