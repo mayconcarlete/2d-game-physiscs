@@ -11,6 +11,7 @@ class Particle {
     Vec2 position;
     Vec2 velocity;
     Vec2 acceleration;
+    Vec2 sumForces;
     float mass;
     int radius;
     Vec2& GetPosition();
@@ -26,6 +27,8 @@ class Particle {
     Vec2 GetVelocity() const;
     void SetAcceleration(const Vec2 v);
     Particle& operator += (const Vec2& v);
+    void AddForce(const Vec2& force);
+    void ClearForces();
 };
 
 #endif
