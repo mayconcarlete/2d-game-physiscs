@@ -14,12 +14,12 @@ bool Application::IsRunning() {
 void Application::Setup() {
     running = Graphics::OpenWindow();
     Particle* smallBall = new Particle(700, 0, 1.0);
-    Particle* bigBall = new Particle(500, 0, 3.0);
+    // Particle* bigBall = new Particle(500, 0, 3.0);
     smallBall->radius = 4;
-    bigBall->radius = 12;
+    // bigBall->radius = 12;
     this->particles.push_back(smallBall);
-    this->particles.push_back(bigBall);
-
+    // this->particles.push_back(bigBall);
+    this->pushForce = Vec2(0.0, 0.0);
     // TODO: setup objects in the scene
 }
 
@@ -36,7 +36,32 @@ void Application::Input() {
             case SDL_KEYDOWN:
                 if (event.key.keysym.sym == SDLK_ESCAPE)
                     running = false;
+                if(event.key.keysym.sym == SDLK_UP){
+                    this->pushForce.y = -50 * PIXELS_PER_METER;
+                }
+                if(event.key.keysym.sym == SDLK_DOWN){
+                    this->pushForce.y = 50 * PIXELS_PER_METER;
+                }
+                if(event.key.keysym.sym == SDLK_RIGHT){
+                    this->pushForce.x = 50 * PIXELS_PER_METER;
+                }
+                if(event.key.keysym.sym == SDLK_LEFT){
+                    this->pushForce.x = -50 * PIXELS_PER_METER;
+                }
                 break;
+            case SDL_KEYUP:
+                if(event.key.keysym.sym == SDLK_UP){
+                    this->pushForce.y = 0;
+                }
+                if(event.key.keysym.sym == SDLK_RIGHT){
+                    this->pushForce.x = 0;
+                }
+                if(event.key.keysym.sym == SDLK_DOWN){
+                    this->pushForce.y = 0;
+                }
+                if(event.key.keysym.sym == SDLK_LEFT){
+                    this->pushForce.x = 0;
+                }
         }
     }
 }
@@ -65,6 +90,7 @@ void Application::Update() {
         Vec2 weight = Vec2(0.0, particle->mass * 9.8 * PIXELS_PER_METER);
         particle->AddForce(wind);
         particle->AddForce(weight);
+        particle->AddForce(this->pushForce);
     }
 
     for(auto particle: this->particles){
