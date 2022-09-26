@@ -13,7 +13,9 @@ class Particle {
     Vec2 acceleration;
     Vec2 sumForces;
     float mass;
+    float invMass;
     int radius;
+
     Vec2& GetPosition();
     float GetXPosition() const;
     float GetYPosition() const;

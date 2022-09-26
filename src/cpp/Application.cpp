@@ -13,7 +13,7 @@ bool Application::IsRunning() {
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Setup() {
     running = Graphics::OpenWindow();
-    Particle* smallBall = new Particle(500, 0, 1.0);
+    Particle* smallBall = new Particle(700, 0, 1.0);
     Particle* bigBall = new Particle(500, 0, 3.0);
     smallBall->radius = 4;
     bigBall->radius = 12;
@@ -59,7 +59,7 @@ void Application::Update() {
         deltaTime = 0.01;
     }
     timePreviousFrame = SDL_GetTicks();
-    Vec2 wind = Vec2(3.0, 0.0);
+    Vec2 wind = Vec2(0.0, 0.0);
 
     for(auto particle: particles){
         Vec2 weight = Vec2(0.0, particle->mass * 9.8 * PIXELS_PER_METER);
