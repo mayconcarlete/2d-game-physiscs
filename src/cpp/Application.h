@@ -10,6 +10,7 @@ class Application {
         bool running = false;
         std::vector<Particle*> particles;
         Vec2 pushForce;
+        SDL_Rect liquid;
 
     public:
         Application() = default;

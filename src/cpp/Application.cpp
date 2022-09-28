@@ -3,6 +3,7 @@
 #include "./Physics/Vec2.h"
 #include "./Physics/Constants.h"
 #include "./Graphics.h"
+#include "./Physics/Force.h"
 
 bool Application::IsRunning() {
     return running;
@@ -14,12 +15,16 @@ bool Application::IsRunning() {
 void Application::Setup() {
     running = Graphics::OpenWindow();
     Particle* smallBall = new Particle(700, 0, 1.0);
-    // Particle* bigBall = new Particle(500, 0, 3.0);
+    Particle* bigBall = new Particle(500, 0, 3.0);
     smallBall->radius = 4;
-    // bigBall->radius = 12;
+    bigBall->radius = 12;
     this->particles.push_back(smallBall);
-    // this->particles.push_back(bigBall);
+    this->particles.push_back(bigBall);
     this->pushForce = Vec2(0.0, 0.0);
+    this->liquid.x = 0;
+    this->liquid.y = Graphics::Height() / 2;
+    this->liquid.w = Graphics::Width();
+    this->liquid.h = Graphics::Height() / 2;
     // TODO: setup objects in the scene
 }
 
@@ -88,11 +93,13 @@ void Application::Update() {
 
     for(auto particle: particles){
         Vec2 weight = Vec2(0.0, particle->mass * 9.8 * PIXELS_PER_METER);
-        particle->AddForce(wind);
         particle->AddForce(weight);
         particle->AddForce(this->pushForce);
+        if(particle->GetYPosition() >= this->liquid.y){
+            Vec2 drag = Force::GenerateDragForce(*particle, 0.04);
+            particle->AddForce(drag);
+        }
     }
-
     for(auto particle: this->particles){
         particle->UpdateVelocity(deltaTime);
     }
@@ -103,6 +110,7 @@ void Application::Update() {
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Render() {
     Graphics::ClearScreen(0xFF056263);
+    Graphics::DrawFillRect(this->liquid.x + this->liquid.w / 2, this->liquid.y + this->liquid.h / 2, this->liquid.w, this->liquid.h, 0xFF6E3713);
     for(auto particle: this->particles){
         Graphics::DrawFillCircle(particle->GetXPosition(), particle->GetYPosition(), particle->radius, 0xFFFFFFFF);
     }
