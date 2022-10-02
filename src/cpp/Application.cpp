@@ -67,6 +67,20 @@ void Application::Input() {
                 if(event.key.keysym.sym == SDLK_LEFT){
                     this->pushForce.x = 0;
                 }
+                break;
+            case SDL_MOUSEBUTTONUP:
+                if(event.button.button == SDL_BUTTON_LEFT){
+                    std::cout << "mouse esquerdo clicado posicao x: " << event.button.x << "y: " << event.button.y << std::endl;
+                    int x,y;
+                    SDL_GetMouseState(&x, &y);
+                    Particle* newParticle = new Particle(x, y, 1.0);
+                    newParticle->radius = 5;
+                    this->particles.push_back(newParticle);
+                }
+                if(event.button.button == SDL_BUTTON_RIGHT){
+                    std::cout << "mouse direito clicado x: "<< event.button.x << "y: "<< event.button.y << std::endl;
+                }
+                break;
         }
     }
 }
@@ -93,12 +107,14 @@ void Application::Update() {
 
     for(auto particle: particles){
         Vec2 weight = Vec2(0.0, particle->mass * 9.8 * PIXELS_PER_METER);
-        particle->AddForce(weight);
+        // particle->AddForce(weight);
         particle->AddForce(this->pushForce);
-        if(particle->GetYPosition() >= this->liquid.y){
-            Vec2 drag = Force::GenerateDragForce(*particle, 0.04);
-            particle->AddForce(drag);
-        }
+        Vec2 friction = Force::GenerateFrictionForce(*particle, 20.0 * PIXELS_PER_METER);
+        particle->AddForce(friction);
+        // if(particle->GetYPosition() >= this->liquid.y){
+        //     Vec2 drag = Force::GenerateDragForce(*particle, 0.04);
+        //     particle->AddForce(drag);
+        // }
     }
     for(auto particle: this->particles){
         particle->UpdateVelocity(deltaTime);
