@@ -15,16 +15,16 @@ bool Application::IsRunning() {
 void Application::Setup() {
     running = Graphics::OpenWindow();
     Particle* smallBall = new Particle(700, 0, 1.0);
-    Particle* bigBall = new Particle(500, 0, 3.0);
+    Particle* bigBall = new Particle(500, 0, 30.0);
     smallBall->radius = 4;
     bigBall->radius = 12;
     this->particles.push_back(smallBall);
     this->particles.push_back(bigBall);
     this->pushForce = Vec2(0.0, 0.0);
-    this->liquid.x = 0;
-    this->liquid.y = Graphics::Height() / 2;
-    this->liquid.w = Graphics::Width();
-    this->liquid.h = Graphics::Height() / 2;
+    // this->liquid.x = 0;
+    // this->liquid.y = Graphics::Height() / 2;
+    // this->liquid.w = Graphics::Width();
+    // this->liquid.h = Graphics::Height() / 2;
     // TODO: setup objects in the scene
 }
 
@@ -116,6 +116,10 @@ void Application::Update() {
         //     particle->AddForce(drag);
         // }
     }
+    // attraction force
+    Vec2 attraction = Force::GenerateGravitationalForce(*particles[0], *particles[1], 5000.0, 5, 100);
+    particles[0]->AddForce(attraction);
+    particles[1]->AddForce(-attraction);
     for(auto particle: this->particles){
         particle->UpdateVelocity(deltaTime);
     }
@@ -126,7 +130,7 @@ void Application::Update() {
 ///////////////////////////////////////////////////////////////////////////////
 void Application::Render() {
     Graphics::ClearScreen(0xFF056263);
-    Graphics::DrawFillRect(this->liquid.x + this->liquid.w / 2, this->liquid.y + this->liquid.h / 2, this->liquid.w, this->liquid.h, 0xFF6E3713);
+    // Graphics::DrawFillRect(this->liquid.x + this->liquid.w / 2, this->liquid.y + this->liquid.h / 2, this->liquid.w, this->liquid.h, 0xFF6E3713);
     for(auto particle: this->particles){
         Graphics::DrawFillCircle(particle->GetXPosition(), particle->GetYPosition(), particle->radius, 0xFFFFFFFF);
     }
