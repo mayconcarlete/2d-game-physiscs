@@ -13,7 +13,7 @@ class Application {
         SDL_Rect liquid;
 
         Vec2 anchor = Vec2(0,0);
-        float k = 10;
+        float k = 40;
         float restLength = 40;
 
     public:

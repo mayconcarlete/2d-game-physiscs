@@ -15,7 +15,7 @@ bool Application::IsRunning() {
 void Application::Setup() {
     running = Graphics::OpenWindow();
     anchor = Vec2(Graphics::Width()/2, 30);
-    Particle* bob = new Particle(Graphics::Width() / 2, Graphics::Height()/2, 2.0);
+    Particle* bob = new Particle(Graphics::Width() / 2, Graphics::Height()/2, 3.0);
     bob->radius = 5;
     particles.push_back(bob);
 
@@ -114,7 +114,7 @@ void Application::Update() {
         // Vec2 weight = Vec2(0.0, particle->mass * 9.8 * PIXELS_PER_METER);
         // particle->AddForce(weight);
         particle->AddForce(this->pushForce);
-        Vec2 drag = Force::GenerateDragForce(*particle, 0.001);
+        Vec2 drag = Force::GenerateDragForce(*particle, 0.007);
         particle->AddForce(drag);
         Vec2 weight = Vec2(0.0, particle->mass * 9.8 * PIXELS_PER_METER);
         particle->AddForce(weight);
