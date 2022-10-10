@@ -12,6 +12,10 @@ class Application {
         Vec2 pushForce;
         SDL_Rect liquid;
 
+        Vec2 anchor = Vec2(0,0);
+        float k = 10;
+        float restLength = 40;
+
     public:
         Application() = default;
         ~Application() = default;
