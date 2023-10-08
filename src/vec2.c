@@ -17,3 +17,12 @@ void free_vec2(struct Vec2* vec2){
 double magnitude(struct Vec2* vec2){
     return sqrt((vec2->x * vec2->x) + (vec2->y * vec2->y));
 }
+
+void add(struct Vec2* vec, struct Vec2 v){
+    vec->x += v.x;
+    vec->y += v.y;
+}
+void subtraction(struct Vec2* vec, struct Vec2 v){
+    vec->x -= v.x;
+    vec->y -= v.y;
+}
