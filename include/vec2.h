@@ -6,19 +6,19 @@ struct  Vec2 {
     double y;
 };
 
-struct Vec2 *new_vec2(double x, double y);
-void free_vec2(struct Vec2 *this);
-void print_vec(struct Vec2 *this);
+struct Vec2 *New_Vec2(double x, double y);
+void Free_Vec2(struct Vec2 *this);
+void Print_Vec2(struct Vec2 *this);
 
-double magnitude(struct Vec2 *this);
+double Magnitude(struct Vec2 *this);
 
-void add(struct Vec2 *this, struct Vec2 v);
-struct Vec2 *add_static(struct Vec2 *v1, struct Vec2 *v2);
+void Add_Vec2(struct Vec2 *this, struct Vec2 v);
+struct Vec2 *Add_Vec2_Static(struct Vec2 *v1, struct Vec2 *v2);
 
-void subtraction(struct Vec2 *this, struct Vec2 v);
-struct Vec2 *subtraction_static(struct Vec2 *v1, struct Vec2 *v2);
+void Sub_Vec2(struct Vec2 *this, struct Vec2 v);
+struct Vec2 *Sub_Vec2_Static(struct Vec2 *v1, struct Vec2 *v2);
 
-void scale(struct Vec2 *this, double number);
+void Scale_Vec2(struct Vec2 *this, double number);
 struct Vec2 *scale_static(struct Vec2 *this, double number);
 
 /*

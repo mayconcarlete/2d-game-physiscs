@@ -10,7 +10,7 @@ SDL_Renderer* renderer;
 struct Vec2* vec2; 
 
 void setup(){
-    vec2 = new_vec2(100, 100);    
+    vec2 = New_Vec2(100, 100);    
 }
 
 void update(){
@@ -25,7 +25,7 @@ void update(){
 void render(){}
 
 int main(){
-    struct Vec2* vec2 = new_vec2(3, 4);
+    struct Vec2* vec2 = New_Vec2(3, 4);
     struct Vec2 vAdd, vSub;
     vAdd.x = 1;
     vAdd.y = 1;
@@ -37,15 +37,15 @@ int main(){
     // printf("X: %.2f Y: %.2f magnitude: %.2f\n", vec2->x, vec2->y, magnitude(vec2));
     // scale(vec2, -1);
     // struct Vec2* vec_b = add_static(&vAdd, &vSub);
-    struct Vec2* vec_b = subtraction_static(&vAdd, &vSub);
+    struct Vec2* vec_b = Sub_Vec2_Static(&vAdd, &vSub);
     struct Vec2* vec_c = scale_static(&vSub, 3);
     double dot = dot_product(&vAdd, &vSub);
     printf("Dot: %.2f", dot);
-    print_vec(vec_c);
+    Print_Vec2(vec_c);
 
-    free_vec2(vec2);
-    free_vec2(vec_b);
-    free_vec2(vec_c);
+    Free_Vec2(vec2);
+    Free_Vec2(vec_b);
+    Free_Vec2(vec_c);
 
     struct AppWindow *app = New_AppWindow();
     initialize_window(app);
