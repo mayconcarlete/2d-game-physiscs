@@ -33,6 +33,7 @@
     "type_traits": "cpp",
     "typeinfo": "cpp",
     "utility": "cpp",
-    "vec2.h": "c"
+    "vec2.h": "c",
+    "stdio.h": "c"
   },
 }
