@@ -8,7 +8,7 @@ struct  Vec2 {
 
 struct Vec2 *New_Vec2(double x, double y);
 void Free_Vec2(struct Vec2 *this);
-void Print_Vec2(struct Vec2 *this);
+void Vec2_Print(struct Vec2 *this);
 
 double Vec2_Magnitude(struct Vec2 *this);
 

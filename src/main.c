@@ -41,7 +41,7 @@ int main(){
     struct Vec2* vec_c = Vec2_Scale_Static(&vSub, 3);
     double dot = Vec2_Dot_Product(&vAdd, &vSub);
     printf("Dot: %.2f", dot);
-    Print_Vec2(vec_c);
+    Vec2_Print(vec_c);
 
     Free_Vec2(vec2);
     Free_Vec2(vec_b);

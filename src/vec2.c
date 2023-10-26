@@ -14,7 +14,7 @@ void Free_Vec2(struct Vec2 *this){
     free(this);
 }
 
-void Print_Vec2(struct Vec2 *this){
+void Vec2_Print(struct Vec2 *this){
     printf("\n");
     printf("X: %.2f - Y: %.2f", this->x, this->y);
     printf("\n");
