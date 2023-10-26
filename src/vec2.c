@@ -51,3 +51,7 @@ void scale(struct Vec2 *this, double number){
 struct Vec2 *scale_static(struct Vec2 *this, double number){
     return new_vec2((this->x * number), (this->y * number));
 }   
+
+double dot_product(struct Vec2 *v1, struct Vec2 *v2){
+    return (v1->x * v2->x) + (v1->y * v2->y);
+}

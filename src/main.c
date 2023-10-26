@@ -28,7 +28,7 @@ int main(){
     struct Vec2 vAdd, vSub;
     vAdd.x = 1;
     vAdd.y = 1;
-    vSub.x = 4;
+    vSub.x = ;
     vSub.y = 5;
 
     // add(vec2, vAdd);
@@ -38,7 +38,8 @@ int main(){
     // struct Vec2* vec_b = add_static(&vAdd, &vSub);
     struct Vec2* vec_b = subtraction_static(&vAdd, &vSub);
     struct Vec2* vec_c = scale_static(&vSub, 3);
-    
+    double dot = dot_product(&vAdd, &vSub);
+    printf("Dot: %.2f", dot);
     print_vec(vec_c);
 
     free_vec2(vec2);
