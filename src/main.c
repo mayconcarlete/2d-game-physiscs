@@ -28,7 +28,7 @@ int main(){
     struct Vec2 vAdd, vSub;
     vAdd.x = 1;
     vAdd.y = 1;
-    vSub.x = ;
+    vSub.x = 4;
     vSub.y = 5;
 
     // add(vec2, vAdd);
