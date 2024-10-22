@@ -1,6 +1,10 @@
+#define SDL_MAIN_HANDLED
 #include <memory>
 #include <iostream>
 #include "Vec2.hpp"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL2_gfxPrimitives.h>
 
 int main(){
 
