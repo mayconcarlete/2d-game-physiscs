@@ -31,3 +31,41 @@ Vec2 Vec2::Rotate(const float angle) const {
     return result;
 }
 
+float Vec2::MagnitudeSquared() const {
+    return (x * x) + (y * y);
+}
+
+float Vec2::Magnitude() const {
+    return std::sqrt(MagnitudeSquared());
+}
+
+Vec2& Vec2::Normalize() {
+    const auto magnitude = Magnitude();
+    if(magnitude > 0){
+        x = x/magnitude;
+        y = y/magnitude;
+        return *this;
+    }
+}
+
+Vec2 Vec2::UnitVector() const {
+    const auto magnitude = Magnitude();
+    if(magnitude > 0) {
+        Vec2 result;
+        result.x = x / magnitude;
+        result.y = y / magnitude;
+        return result;
+    }
+}
+
+Vec2 Vec2::Normal() const { // Perpendicular
+    return Vec2(y, -x).Normalize();
+}
+
+float Vec2::Dot(const Vec2& v) const {
+    return (x * v.x) + (y * v.y);
+}
+
+float Vec2::Cross(const Vec2& v) const {
+    return (x * v.y) - (y * v.x);
+}
