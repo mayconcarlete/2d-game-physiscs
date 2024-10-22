@@ -4,7 +4,7 @@
 
 int main(){
 
-    Vec2 a = Vec2(1,0);
+    Vec2 a = Vec2(1,2);
     Vec2 b = Vec2(8, 6);
 
     // a.Add(b);
@@ -14,10 +14,13 @@ int main(){
     // a.Scale(4);
     // a.Print();
 
-    Vec2 res = a.Rotate(3.14/2);
-    res.Print();
-    b.Normalize();
-    std::cout << "Value of normlized vector x: " <<b.x <<" Y: " << b.y  << std::endl;
+    // Vec2 res = a.Rotate(3.14/2);
+    // res.Print();
+    // b.Normalize();
+    // std::cout << "Value of normlized vector x: " <<b.x <<" Y: " << b.y  << std::endl;
+
+    Vec2 result = a / 2;
+    std::cout << "Result a - b: " << result.x << " y: " << result.y << std::endl;
 
     return EXIT_SUCCESS;
 }
