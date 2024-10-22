@@ -112,4 +112,33 @@ Vec2 Vec2::operator / (const float n) const {
     return result;
 }
 
+Vec2 Vec2::operator -() {
+    Vec2 result;
+    result.x = x * (-1);
+    result.y = y * (-1);
+    return result;
+}
 
+Vec2& Vec2::operator += (const Vec2& v){
+    x += v.x;
+    y += v.y;
+    return *this;
+}
+
+Vec2& Vec2::operator -= (const Vec2& v){
+    x -= v.x;
+    y -= v.y;
+    return *this;
+}
+
+Vec2& Vec2::operator *= (const float n){
+    x *= n;
+    y *= n;
+    return *this;
+}
+
+Vec2& Vec2::operator /= (const float n){
+    x /= n;
+    y /= n;
+    return *this;
+}

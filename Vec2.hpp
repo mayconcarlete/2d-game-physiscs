@@ -34,8 +34,12 @@ class Vec2{
         Vec2 operator - (const Vec2& v) const; // v = v1 - v2
         Vec2 operator * (const float n) const; // v = v1 * v2
         Vec2 operator / (const float n) const; // v = v1 / v2
-
         Vec2 operator - (); // -v1
+
+        Vec2& operator += (const Vec2& v); 
+        Vec2& operator -= (const Vec2& v);
+        Vec2& operator *= (const float n);
+        Vec2& operator /= (const float n);
 };
 
 
