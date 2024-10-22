@@ -19,7 +19,8 @@ int main(){
     // b.Normalize();
     // std::cout << "Value of normlized vector x: " <<b.x <<" Y: " << b.y  << std::endl;
 
-    Vec2 result = a / 2;
+    Vec2 result = b;
+    result -= a;
     std::cout << "Result a - b: " << result.x << " y: " << result.y << std::endl;
 
     return EXIT_SUCCESS;
