@@ -5,6 +5,8 @@
 #include <iostream>
 #include <SDL2/SDL2_gfxPrimitives.h>
 #include <cmath>
+#include "Physics/Vec2.hpp"
+#include <vector>
 
 Graphics::Graphics(std::uint32_t width, std::uint32_t height):m_windowWidth(width), m_windowHeight(height){};
 
@@ -83,4 +85,13 @@ void Graphics::DrawRect(std::int32_t x, std::int32_t y, std::int32_t width, std:
 
 void Graphics::DrawFillRect(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height, std::uint32_t color){
     boxColor(m_renderer, x - width / 2.0, y - height / 2.0, x + width / 2.0, y + height / 2.0, color);
+}
+
+void Graphics::DrawPolygon(std::int32_t x, std::int32_t y, const std::vector<Vec2>& vertices, std::uint32_t color){
+    for(std::uint32_t i = 0; i < vertices.size(); ++i){
+        std::uint32_t currentIndex = i;
+        std::uint32_t nextIndex = (i + 1) % vertices.size();
+        lineColor(m_renderer, vertices[currentIndex].x, vertices[currentIndex].y, vertices[nextIndex].x, vertices[nextIndex].y, color);
+    }
+    filledCircleColor(m_renderer, x, y, 1, color);
 }

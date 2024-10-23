@@ -11,12 +11,13 @@ project(
 find_package(SDL2 CONFIG REQUIRED)
 find_package(sdl2-gfx REQUIRED)
 find_package(SDL2_image CONFIG REQUIRED)
-
+include_directories(./src/Physics)
 add_executable(
     main
     ./src/Main.cpp
     ./src/Graphics.cpp
     ./src/Application.cpp
+    ./src/Physics/Vec2.cpp
     # Vec2.cpp
 )
 

@@ -2,7 +2,9 @@
 #define GRAPHICS_H
 
 #include <cstdint>
+#include <vector>
 #include "SDL2/SDL.h"
+#include "Physics/Vec2.hpp"
 
 class Graphics{
     private:
@@ -24,6 +26,8 @@ class Graphics{
         void DrawFillCircle(std::int32_t x, std::int32_t y, std::uint32_t radius, std::uint32_t color);
         void DrawRect(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height, std::uint32_t color);
         void DrawFillRect(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height, std::uint32_t color);
+        void DrawPolygon(std::int32_t x, std::int32_t y, const std::vector<Vec2>& vertices, std::uint32_t color);
+
 };
 
  #endif
