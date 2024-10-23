@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-# include("C:/Users/Maycon/dev/vcpkg/scripts/buildsystems/vcpkg.cmake")
+include("C:/Users/Maycon/dev/vcpkg/scripts/buildsystems/vcpkg.cmake")
 # include("/home/maycon/dev/vcpkg/scripts/buildsystems/vcpkg.cmake")
 project(
     Physics
@@ -16,6 +16,7 @@ add_executable(
     main
     ./src/Main.cpp
     ./src/Graphics.cpp
+    ./src/Application.cpp
     # Vec2.cpp
 )
 
