@@ -12,7 +12,7 @@ class Graphics{
         SDL_Renderer* m_renderer;
     
     public:
-            (std::uint32_t width, std::uint32_t height);
+        Graphics(std::uint32_t width, std::uint32_t height);
         ~Graphics() = default;
         bool OpenWindow();
 };
