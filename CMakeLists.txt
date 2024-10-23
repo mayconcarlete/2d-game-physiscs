@@ -14,8 +14,9 @@ find_package(SDL2_image CONFIG REQUIRED)
 
 add_executable(
     main
-    Main.cpp
-    Vec2.cpp
+    ./src/Main.cpp
+    ./src/Graphics.cpp
+    # Vec2.cpp
 )
 
 target_link_libraries(main
