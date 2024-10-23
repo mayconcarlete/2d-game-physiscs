@@ -8,7 +8,7 @@ int main(int argc, char* argv[]){
 
     while(app.IsRunning()){
         app.Input();
-        // app.Update();
+        app.Update();
         app.Render();
 
     }

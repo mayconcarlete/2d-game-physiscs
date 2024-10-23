@@ -18,6 +18,8 @@ class Graphics{
         void CloseWindow();
         void ClearScreen(std::uint32_t color);
         void RenderFrame();
+
+        void DrawLine(std::int32_t x0, std::int32_t y0, std::int32_t x1, std::int32_t y1, std::uint32_t color);
 };
 
  #endif

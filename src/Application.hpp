@@ -13,7 +13,7 @@ class Application {
         bool IsRunning();
         void Setup();
         void Input();
-        // void Update();
+        void Update();
         void Render();
         void Destroy();
 };

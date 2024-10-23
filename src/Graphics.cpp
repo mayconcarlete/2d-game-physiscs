@@ -3,6 +3,7 @@
 #include "SDL2/SDL.h"
 #include <string>
 #include <iostream>
+#include <SDL2/SDL2_gfxPrimitives.h>
 
 Graphics::Graphics(std::uint32_t width, std::uint32_t height):m_windowWidth(width), m_windowHeight(height){};
 
@@ -57,4 +58,8 @@ void Graphics::ClearScreen(std::uint32_t color){
 void Graphics::RenderFrame(){
     SDL_Delay(10);
     SDL_RenderPresent(m_renderer);
+}
+
+void Graphics::DrawLine(std::int32_t x0, std::int32_t y0, std::int32_t x1, std::int32_t y1, std::uint32_t color){
+    lineColor(m_renderer, x0, y0, x1, y1, color);
 }

@@ -9,7 +9,7 @@ bool Application::IsRunning(){
 
 void Application::Setup(){
     std::uint32_t width = 500;
-    std::uint32_t height = 600;
+    std::uint32_t height = 400;
     graphics = std::make_unique<Graphics>(width, height);
     running = graphics->OpenWindow();
 }
@@ -30,13 +30,14 @@ void Application::Input(){
     }
 }
 
-// void Application::Update(){
+void Application::Update(){
 
-// }
+}
 
 void Application::Render(){
     graphics->ClearScreen(0xFF056263);
     // Graphics::DrawFillCircle(200, 200, 40, 0xffffffff);
+    graphics->DrawLine(0, 0, 300, 300,0xffffffff );
     graphics->RenderFrame();
 }
 
