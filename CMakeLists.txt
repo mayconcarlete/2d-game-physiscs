@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
-include("C:/Users/Maycon/dev/vcpkg/scripts/buildsystems/vcpkg.cmake")
-
+# include("C:/Users/Maycon/dev/vcpkg/scripts/buildsystems/vcpkg.cmake")
+# include("/home/maycon/dev/vcpkg/scripts/buildsystems/vcpkg.cmake")
 project(
     Physics
     LANGUAGES

@@ -1,0 +1,16 @@
+{
+  "version": 8,
+  "configurePresets": [
+    {
+      "name": "test",
+      "displayName": "test",
+      "generator": "Unix Makefiles",
+      "binaryDir": "build/test",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CXX_STANDARD": "c++17",
+        "CMAKE_TOOLCHAIN_FILE": "/home/maycon/dev/vcpkg/scripts/buildsystems/vcpkg.cmake"
+      }
+    }
+  ]
+}
