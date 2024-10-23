@@ -1,12 +1,17 @@
 #include "Application.hpp"
 #include "SDL2/SDL.h"
+#include <memory>
+#include <cstdint>
 
 bool Application::IsRunning(){
     return running;
 }
 
 void Application::Setup(){
-    running = Graphics::OpenWindow();
+    std::uint32_t width = 500;
+    std::uint32_t height = 600;
+    graphics = std::make_unique<Graphics>(width, height);
+    running = graphics->OpenWindow();
 }
 
 void Application::Input(){
@@ -25,16 +30,16 @@ void Application::Input(){
     }
 }
 
-void Application::Update(){
+// void Application::Update(){
 
-}
+// }
 
 void Application::Render(){
-    Graphics::ClearScreen(0xFF056263);
-    Graphics::DrawFillCircle(200, 200, 40, 0xffffffff);
-    Graphics::RenderFrame();
+    graphics->ClearScreen(0xFF056263);
+    // Graphics::DrawFillCircle(200, 200, 40, 0xffffffff);
+    graphics->RenderFrame();
 }
 
 void Application::Destroy(){
-    Graphics::CloseWindow();
+    graphics->CloseWindow();
 }

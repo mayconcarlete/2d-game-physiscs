@@ -15,6 +15,9 @@ class Graphics{
         Graphics(std::uint32_t width, std::uint32_t height);
         ~Graphics() = default;
         bool OpenWindow();
+        void CloseWindow();
+        void ClearScreen(std::uint32_t color);
+        void RenderFrame();
 };
 
  #endif
