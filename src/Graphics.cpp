@@ -69,3 +69,14 @@ void Graphics::DrawCircle(std::int32_t x, std::int32_t y, std::uint32_t radius, 
     circleColor(m_renderer, x, y, radius, color);
     lineColor(m_renderer, x, y, x + cos(angle) * radius, y * sin(angle) * radius, color);
 }
+
+void Graphics::DrawFillCircle(std::int32_t x, std::int32_t y, std::uint32_t radius, std::uint32_t color){
+    filledCircleColor(m_renderer, x, y, radius, color);
+}
+
+void Graphics::DrawRect(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height, std::uint32_t color){
+    lineColor(m_renderer, x - width / 2.0, y - height / 2.0, x + width / 2.0, y - height / 2.0, color);
+    lineColor(m_renderer, x + width / 2.0, y - height / 2.0, x + width / 2.0, y + height / 2.0, color);
+    lineColor(m_renderer, x + width / 2.0, y + height / 2.0, x - width / 2.0, y + height / 2.0, color);
+    lineColor(m_renderer, x - width / 2.0, y + height / 2.0, x - width / 2.0, y - height / 2.0, color);
+}

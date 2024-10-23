@@ -37,8 +37,10 @@ void Application::Update(){
 void Application::Render(){
     graphics->ClearScreen(0xFF056263);
     // Graphics::DrawFillCircle(200, 200, 40, 0xffffffff);
-    graphics->DrawLine(0, 0, 300, 300,0xffffffff );
-    graphics->DrawCircle(300, 300, 30, 3.14, 0xFFFFFFFF);
+    // graphics->DrawLine(0, 0, 300, 300,0xffffffff );
+    // graphics->DrawCircle(300, 300, 30, 3.14, 0xFFFFFFFF);
+    // graphics->DrawFillCircle(200, 200, 20, 0xFFFF0000);
+    graphics->DrawRect(200, 200, 100, 100, 0xFFFF0000);
     graphics->RenderFrame();
 }
 
