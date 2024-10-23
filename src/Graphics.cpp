@@ -96,7 +96,7 @@ void Graphics::DrawPolygon(std::int32_t x, std::int32_t y, const std::vector<Vec
     filledCircleColor(m_renderer, x, y, 1, color);
 }
 
-void Graphics::DrawFillPolygon(int x, int y, const std::vector<Vec2>& vertices, Uint32 color) {
+void Graphics::DrawFillPolygon(std::int32_t x, std::int32_t y, const std::vector<Vec2>& vertices, std::uint32_t color) {
     std::vector<short> vx;
     std::vector<short> vy;
     for (int i = 0; i < vertices.size(); i++) {
@@ -107,4 +107,10 @@ void Graphics::DrawFillPolygon(int x, int y, const std::vector<Vec2>& vertices, 
     }
     filledPolygonColor(m_renderer, &vx[0], &vy[0], vertices.size(), color);
     filledCircleColor(m_renderer, x, y, 1, 0xFF000000);
+}
+
+void Graphics::DrawTexture(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height, float rotation, SDL_Texture* texture) {
+    SDL_Rect dstRect = {x - (width / 2), y - (height / 2), width, height};
+    float rotationDeg = rotation * 57.2958;
+    SDL_RenderCopyEx(m_renderer, texture, NULL, &dstRect, rotationDeg, NULL, SDL_FLIP_NONE);
 }
