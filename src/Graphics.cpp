@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <SDL2/SDL2_gfxPrimitives.h>
+#include <cmath>
 
 Graphics::Graphics(std::uint32_t width, std::uint32_t height):m_windowWidth(width), m_windowHeight(height){};
 
@@ -62,4 +63,9 @@ void Graphics::RenderFrame(){
 
 void Graphics::DrawLine(std::int32_t x0, std::int32_t y0, std::int32_t x1, std::int32_t y1, std::uint32_t color){
     lineColor(m_renderer, x0, y0, x1, y1, color);
+}
+
+void Graphics::DrawCircle(std::int32_t x, std::int32_t y, std::uint32_t radius, float angle, std::uint32_t color){
+    circleColor(m_renderer, x, y, radius, color);
+    lineColor(m_renderer, x, y, x + cos(angle) * radius, y * sin(angle) * radius, color);
 }
