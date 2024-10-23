@@ -80,3 +80,7 @@ void Graphics::DrawRect(std::int32_t x, std::int32_t y, std::int32_t width, std:
     lineColor(m_renderer, x + width / 2.0, y + height / 2.0, x - width / 2.0, y + height / 2.0, color);
     lineColor(m_renderer, x - width / 2.0, y + height / 2.0, x - width / 2.0, y - height / 2.0, color);
 }
+
+void Graphics::DrawFillRect(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height, std::uint32_t color){
+    boxColor(m_renderer, x - width / 2.0, y - height / 2.0, x + width / 2.0, y + height / 2.0, color);
+}

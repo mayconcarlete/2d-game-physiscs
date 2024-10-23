@@ -40,7 +40,7 @@ void Application::Render(){
     // graphics->DrawLine(0, 0, 300, 300,0xffffffff );
     // graphics->DrawCircle(300, 300, 30, 3.14, 0xFFFFFFFF);
     // graphics->DrawFillCircle(200, 200, 20, 0xFFFF0000);
-    graphics->DrawRect(200, 200, 100, 100, 0xFFFF0000);
+    graphics->DrawFillRect(200, 200, 100, 100, 0xFFFF0000);
     graphics->RenderFrame();
 }
 

@@ -23,6 +23,7 @@ class Graphics{
         void DrawCircle(std::int32_t x, std::int32_t y, std::uint32_t radius, float angle, std::uint32_t color);
         void DrawFillCircle(std::int32_t x, std::int32_t y, std::uint32_t radius, std::uint32_t color);
         void DrawRect(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height, std::uint32_t color);
-};  
+        void DrawFillRect(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height, std::uint32_t color);
+};
 
  #endif
