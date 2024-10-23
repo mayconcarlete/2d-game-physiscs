@@ -34,7 +34,7 @@ void Application::Input(){
 void Application::Update(){
 
 }
-std::vector<Vec2> v {Vec2(0,0), Vec2(100, 0), Vec2(100, 100), Vec2(0, 100)};
+// std::vector<Vec2> v {Vec2(0,0), Vec2(100, 0), Vec2(100, 100), Vec2(0, 100)};
 void Application::Render(){
     graphics->ClearScreen(0xFF056263);
     // Graphics::DrawFillCircle(200, 200, 40, 0xffffffff);
@@ -42,8 +42,8 @@ void Application::Render(){
     // graphics->DrawCircle(300, 300, 30, 3.14, 0xFFFFFFFF);
     // graphics->DrawFillCircle(200, 200, 20, 0xFFFF0000);
     // graphics->DrawFillRect(200, 200, 100, 100, 0xFFFF0000);
+    // graphics->DrawFillPolygon(100, 100, v, 0xFFFFFFFF);
     
-    graphics->DrawPolygon(100, 100, v, 0xFFFFFFFF);
     graphics->RenderFrame();
 }
 

@@ -95,3 +95,16 @@ void Graphics::DrawPolygon(std::int32_t x, std::int32_t y, const std::vector<Vec
     }
     filledCircleColor(m_renderer, x, y, 1, color);
 }
+
+void Graphics::DrawFillPolygon(int x, int y, const std::vector<Vec2>& vertices, Uint32 color) {
+    std::vector<short> vx;
+    std::vector<short> vy;
+    for (int i = 0; i < vertices.size(); i++) {
+        vx.push_back(static_cast<int>(vertices[i].x));
+    }
+    for (int i = 0; i < vertices.size(); i++) {
+        vy.push_back(static_cast<int>(vertices[i].y));
+    }
+    filledPolygonColor(m_renderer, &vx[0], &vy[0], vertices.size(), color);
+    filledCircleColor(m_renderer, x, y, 1, 0xFF000000);
+}

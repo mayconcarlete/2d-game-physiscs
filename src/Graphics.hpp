@@ -27,7 +27,7 @@ class Graphics{
         void DrawRect(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height, std::uint32_t color);
         void DrawFillRect(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height, std::uint32_t color);
         void DrawPolygon(std::int32_t x, std::int32_t y, const std::vector<Vec2>& vertices, std::uint32_t color);
-
+        void DrawFillPolygon(int x, int y, const std::vector<Vec2>& vertices, Uint32 color);
 };
 
  #endif
