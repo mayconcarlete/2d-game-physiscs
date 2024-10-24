@@ -18,6 +18,7 @@ add_executable(
     ./src/Graphics.cpp
     ./src/Application.cpp
     ./src/Physics/Vec2.cpp
+    ./src/Physics/Particle.cpp
     # Vec2.cpp
 )
 

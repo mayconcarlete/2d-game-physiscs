@@ -3,6 +3,7 @@
 #include <memory>
 #include <cstdint>
 #include "Physics/Vec2.hpp"
+#include "Physics/Particle.hpp"
 
 bool Application::IsRunning(){
     return running;
@@ -13,6 +14,7 @@ void Application::Setup(){
     std::uint32_t height = 400;
     graphics = std::make_unique<Graphics>(width, height);
     running = graphics->OpenWindow();
+    auto particle = std::make_unique<Particle>(100.0f, 200.0f, 10.0f);
 }
 
 void Application::Input(){
