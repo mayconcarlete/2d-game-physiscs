@@ -5,6 +5,7 @@
 Particle::Particle(float x, float y, float mass){
     position = Vec2(x, y);
     mass = mass;
+    radius = 4;
     std::cout << "Particle Constructor called!" << std::endl;
 };
 
