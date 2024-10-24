@@ -34,7 +34,8 @@ void Application::Input(){
 }
 
 void Application::Update(){
-
+    particle->velocity = Vec2(2.0f, 0.0f);
+    particle->position += particle->velocity;
 }
 // std::vector<Vec2> v {Vec2(0,0), Vec2(100, 0), Vec2(100, 100), Vec2(0, 100)};
 void Application::Render(){
