@@ -54,7 +54,7 @@ void Graphics::CloseWindow(){
 }
 
 void Graphics::ClearScreen(std::uint32_t color){
-    SDL_SetRenderDrawColor(m_renderer, 120, 180, 255, 255);
+    SDL_SetRenderDrawColor(m_renderer, color >> 16, color >> 8, color, 255); // 120, 180, 255, 255
     SDL_RenderClear(m_renderer);
 }
 

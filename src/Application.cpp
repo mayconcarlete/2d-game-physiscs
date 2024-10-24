@@ -14,7 +14,7 @@ void Application::Setup(){
     std::uint32_t height = 400;
     graphics = std::make_unique<Graphics>(width, height);
     running = graphics->OpenWindow();
-    particle = std::make_unique<Particle>(100.0f, 200.0f, 10.0f);
+    particle = new Particle(50.0f, 100.0f, 1.0f);
 }
 
 void Application::Input(){
@@ -41,8 +41,8 @@ void Application::Render(){
     graphics->ClearScreen(0xFF056263);
     // Graphics::DrawFillCircle(200, 200, 40, 0xffffffff);
     // graphics->DrawLine(0, 0, 300, 300,0xffffffff );
-    // graphics->DrawCircle(300, 300, 30, 3.14, 0xFFFFFFFF);
-    // graphics->DrawFillCircle(200, 200, 20, 0xFFFF0000);
+    // graphics->DrawCircle(particle->position.x, particle->position.y, 4, 3.14, 0xFFFFFFFF);
+    graphics->DrawFillCircle(particle->position.x, particle->position.y, 4, 0xFFFFFFFF);
     // graphics->DrawFillRect(200, 200, 100, 100, 0xFFFF0000);
     // graphics->DrawFillPolygon(100, 100, v, 0xFFFFFFFF);
     
@@ -50,5 +50,6 @@ void Application::Render(){
 }
 
 void Application::Destroy(){
+    delete particle;
     graphics->CloseWindow();
 }

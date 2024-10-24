@@ -8,7 +8,7 @@ class Application {
     private:
         bool running = false;
         std::unique_ptr<Graphics> graphics;
-        std::unique_ptr<Particle> particle;
+        Particle* particle;
     public:
         Application() = default;
         ~Application() = default;
