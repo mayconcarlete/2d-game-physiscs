@@ -3,10 +3,12 @@
 
 #include "Graphics.hpp"
 #include <memory>
+#include "Physics/Particle.hpp"
 class Application {
     private:
         bool running = false;
         std::unique_ptr<Graphics> graphics;
+        std::unique_ptr<Particle> particle;
     public:
         Application() = default;
         ~Application() = default;
