@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "Physics/Vec2.hpp"
 #include "Physics/Particle.hpp"
+#include "Physics/Constants.hpp"
 
 bool Application::IsRunning(){
     return running;
@@ -34,7 +35,21 @@ void Application::Input(){
 }
 
 void Application::Update(){
-    particle->velocity = Vec2(2.0f, 0.0f);
+    static std::uint32_t timePreviousFrame = SDL_GetTicks64();
+    const auto waitTime = MILLISECONDS_PER_FRAME - (SDL_GetTicks64() - timePreviousFrame);
+    if(waitTime > 0){
+        SDL_Delay(waitTime);
+    }
+
+    float deltaTime = (SDL_GetTicks64() - timePreviousFrame) / 1000.0f;
+    // to protect the code on debugger for example
+    if(deltaTime > 0.016){
+        deltaTime = 0.016;
+    }
+    
+    timePreviousFrame = SDL_GetTicks64();
+
+    particle->velocity = Vec2(100.0f * deltaTime, 30.0f * deltaTime);
     particle->position += particle->velocity;
 }
 // std::vector<Vec2> v {Vec2(0,0), Vec2(100, 0), Vec2(100, 100), Vec2(0, 100)};
