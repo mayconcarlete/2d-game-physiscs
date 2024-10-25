@@ -2,6 +2,7 @@
 #include "SDL2/SDL.h"
 #include <memory>
 #include <cstdint>
+#include <iostream>
 #include "Physics/Vec2.hpp"
 #include "Physics/Particle.hpp"
 #include "Physics/Constants.hpp"
@@ -11,11 +12,12 @@ bool Application::IsRunning(){
 }
 
 void Application::Setup(){
-    std::uint32_t width = 500;
-    std::uint32_t height = 400;
+    std::uint32_t width = window_width;
+    std::uint32_t height = window_height;
     graphics = std::make_unique<Graphics>(width, height);
     running = graphics->OpenWindow();
     particle = new Particle(50.0f, 0.0f, 1.0f);
+    particle->acceleration = Vec2(8.0f * PIXELS_PER_METER, 9.8f * PIXELS_PER_METER);
 }
 
 void Application::Input(){
@@ -49,12 +51,26 @@ void Application::Update(){
     timePreviousFrame = SDL_GetTicks64();
 
     // position and velocity
-    particle->acceleration = Vec2(0.0f, 9.8f * PIXELS_PER_METER);
     particle->velocity += particle->acceleration * deltaTime;
     particle->position += particle->velocity * deltaTime;
 
     // check particle position
-    // if(particle->position.y >=)
+    if(particle->position.y - particle->radius <= 0){
+        particle->position.y = particle->radius;
+        particle->velocity.y *= -0.8;
+    } else if(particle->position.y + particle->radius >= window_height){
+        particle->position.y = window_height - particle->radius;
+        particle->velocity.y *= -0.8;
+    }
+
+    if(particle->position.x - particle->radius <= 0){
+        particle->position.x = particle->radius;
+        particle->velocity.x *= -0.8;
+    } else if (particle->position.x + particle->radius >= window_width){
+        particle->position.x = window_width - particle->radius;
+        particle->velocity.x *= -0.8;
+    }
+    
 }
 // std::vector<Vec2> v {Vec2(0,0), Vec2(100, 0), Vec2(100, 100), Vec2(0, 100)};
 void Application::Render(){
