@@ -50,9 +50,7 @@ void Application::Update(){
     }
     timePreviousFrame = SDL_GetTicks64();
 
-    // position and velocity
-    particle->velocity += particle->acceleration * deltaTime;
-    particle->position += particle->velocity * deltaTime;
+   particle->Integrate(deltaTime);
 
     // check particle position
     if(particle->position.y - particle->radius <= 0){
