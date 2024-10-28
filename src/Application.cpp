@@ -16,8 +16,8 @@ void Application::Setup(){
     std::uint32_t height = window_height;
     graphics = std::make_unique<Graphics>(width, height);
     running = graphics->OpenWindow();
-    std::unique_ptr<Particle> smallParticle = std::make_unique<Particle>(50.0f, 50.0f, 1.0f, 4);
-    std::unique_ptr<Particle> bigParticle = std::make_unique<Particle>(100.0f, 50.0f, 4.0f, 12);
+    auto smallParticle = std::make_shared<Particle>(50.0f, 50.0f, 1.0f, 4);
+    auto bigParticle = std::make_shared<Particle>(100.0f, 50.0f, 4.0f, 12);
     particles.push_back(smallParticle);
     particles.push_back(bigParticle);
 }

@@ -10,7 +10,7 @@ class Application {
     private:
         bool running = false;
         std::unique_ptr<Graphics> graphics;
-        std::vector<std::unique_ptr<Particle>> particles;
+        std::vector<std::shared_ptr<Particle>> particles;
 
     public:
         Application() = default;
