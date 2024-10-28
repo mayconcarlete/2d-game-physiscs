@@ -17,7 +17,7 @@ void Application::Setup(){
     graphics = std::make_unique<Graphics>(width, height);
     running = graphics->OpenWindow();
     particle = new Particle(50.0f, 0.0f, 1.0f);
-    particle->acceleration = Vec2(8.0f * PIXELS_PER_METER, 9.8f * PIXELS_PER_METER);
+    particle->ClearForces();
 }
 
 void Application::Input(){
@@ -50,7 +50,12 @@ void Application::Update(){
     }
     timePreviousFrame = SDL_GetTicks64();
 
-   particle->Integrate(deltaTime);
+    Vec2 wind = Vec2(10.0, 0.0);
+    particle->AddForce(wind);
+    particle->Integrate(deltaTime);
+
+
+
 
     // check particle position
     if(particle->position.y - particle->radius <= 0){
