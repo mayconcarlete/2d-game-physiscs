@@ -1,11 +1,13 @@
 #include "Particle.hpp"
 #include "Vec2.hpp"
 #include <iostream>
+#include <cstdint>
 
-Particle::Particle(float x, float y, float mass){
+Particle::Particle(float x, float y, float mass, std::uint32_t radius){
     position = Vec2(x, y);
     this->mass = mass;
-    radius = 4;
+    this->radius = radius;
+    sumForces = Vec2();
     std::cout << "Particle Constructor called!" << std::endl;
 };
 
@@ -23,8 +25,6 @@ void Particle::ClearForces(){
 
 void Particle::Integrate(float deltaTime){
     acceleration = sumForces / mass;
-    std::cout << "Sumx: " << sumForces.x << " Y: " << sumForces.y << " mass: " << mass << std::endl;
-    acceleration.Print();
     velocity += acceleration * deltaTime;
     position += velocity * deltaTime;
     ClearForces();

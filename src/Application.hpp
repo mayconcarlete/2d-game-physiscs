@@ -4,11 +4,14 @@
 #include "Graphics.hpp"
 #include <memory>
 #include "Physics/Particle.hpp"
+#include <vector>
+
 class Application {
     private:
         bool running = false;
         std::unique_ptr<Graphics> graphics;
-        Particle* particle;
+        std::vector<std::unique_ptr<Particle>> particles;
+
     public:
         Application() = default;
         ~Application() = default;

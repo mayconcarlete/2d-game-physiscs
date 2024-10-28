@@ -15,7 +15,7 @@ class Particle {
         std::uint32_t radius;
         float mass;
 
-        Particle(float x, float y, float mass);
+        Particle(float x, float y, float mass, std::uint32_t radius);
         ~Particle();
 
         void AddForce(const Vec2& force);
