@@ -50,7 +50,7 @@ void Application::Update(){
     }
     timePreviousFrame = SDL_GetTicks64();
 
-    Vec2 wind = Vec2(10.0, 0.0);
+    Vec2 wind = Vec2(10.0 * PIXELS_PER_METER, 0.0 * PIXELS_PER_METER);
     particle->AddForce(wind);
     particle->Integrate(deltaTime);
 
