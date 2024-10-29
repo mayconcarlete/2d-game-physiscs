@@ -52,13 +52,13 @@ void Application::Update(){
     }
     timePreviousFrame = SDL_GetTicks64();
 
-    for(auto &particle: particles){
-        Vec2 wind = Vec2(10.0 * PIXELS_PER_METER, 0.0 * PIXELS_PER_METER);
-        particle->AddForce(wind);
-    }
+    // for(auto &particle: particles){
+    //     Vec2 wind = Vec2(10.0 * PIXELS_PER_METER, 0.0 * PIXELS_PER_METER);
+    //     particle->AddForce(wind);
+    // }
     
     for(auto &particle: particles){
-        Vec2 weight = Vec2(0.0f, 9.8f * PIXELS_PER_METER);
+        Vec2 weight = Vec2(0.0f, 9.8f * particle->mass * PIXELS_PER_METER);
         particle->AddForce(weight);
     }
     

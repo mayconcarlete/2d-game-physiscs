@@ -14,6 +14,7 @@ class Particle {
 
         std::uint32_t radius;
         float mass;
+        float invMass; // é mais usada do que mass pelas game engines, pois na maioria dos casos voce faz uma divisao pela massa.
 
         Particle(float x, float y, float mass, std::uint32_t radius);
         ~Particle();
