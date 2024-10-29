@@ -114,3 +114,11 @@ void Graphics::DrawTexture(std::int32_t x, std::int32_t y, std::int32_t width, s
     float rotationDeg = rotation * 57.2958;
     SDL_RenderCopyEx(m_renderer, texture, NULL, &dstRect, rotationDeg, NULL, SDL_FLIP_NONE);
 }
+
+void Graphics::DrawGizmo(const Vec2& v, float magnitude){
+    // filledTrigonColor(m_renderer, 10, 10, 30, 10, 15, 30, 0xFF0000FF);
+    // length = 100
+
+    this->DrawLine(0, 0, v.x, v.y, 0xFFFF00FF);
+    filledCircleColor(m_renderer, 30, 30, 3, 0xFF0000FF);
+}

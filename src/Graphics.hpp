@@ -30,7 +30,7 @@ class Graphics{
         void DrawFillPolygon(std::int32_t x, std::int32_t y, const std::vector<Vec2>& vertices, std::uint32_t color);
         void DrawTexture(std::int32_t x, std::int32_t y, std::int32_t width, std::int32_t height, float rotation, SDL_Texture* texture);
 
-
+        void DrawGizmo(const Vec2& v, float magnitude);
 
 };
 

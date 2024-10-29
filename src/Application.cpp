@@ -6,12 +6,14 @@
 #include "Physics/Vec2.hpp"
 #include "Physics/Particle.hpp"
 #include "Physics/Constants.hpp"
+#include "Physics/Force.hpp"
 
 bool Application::IsRunning(){
     return running;
 }
 
 void Application::Setup(){
+
     std::uint32_t width = window_width;
     std::uint32_t height = window_height;
     graphics = std::make_unique<Graphics>(width, height);
@@ -22,6 +24,14 @@ void Application::Setup(){
     // particles.push_back(bigParticle);
 
     pushForce = Vec2();
+
+    // test Force class
+    auto p = Particle(10, 20, 10, 3);
+    auto result = Force::GenerateFragForce(p, 10);
+    std::cout << "###############" << std::endl;
+    
+    result.Print();
+    std::cout << "###############" << std::endl;
 }
 
 void Application::Input(){
@@ -91,7 +101,7 @@ void Application::Update(){
         particle->AddForce(pushForce);
     }
     
-    
+
     for(auto &particle: particles){
         particle->Integrate(deltaTime);
 
@@ -119,6 +129,8 @@ void Application::Render(){
     graphics->ClearScreen(0xFF056263);
     for(auto &particle: particles){   
         graphics->DrawFillCircle(particle->position.x, particle->position.y, particle->radius, 0xFFFFFFFF);
+        
+        // graphics->DrawGizmo(particle->velocity.Normalize(), 2.0);
     }
     graphics->RenderFrame();
 }
