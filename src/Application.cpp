@@ -17,9 +17,11 @@ void Application::Setup(){
     graphics = std::make_unique<Graphics>(width, height);
     running = graphics->OpenWindow();
     auto smallParticle = std::make_shared<Particle>(50.0f, 50.0f, 1.0f, 4);
-    auto bigParticle = std::make_shared<Particle>(100.0f, 50.0f, 4.0f, 12);
+    // auto bigParticle = std::make_shared<Particle>(100.0f, 50.0f, 4.0f, 12);
     particles.push_back(smallParticle);
-    particles.push_back(bigParticle);
+    // particles.push_back(bigParticle);
+
+    pushForce = Vec2();
 }
 
 void Application::Input(){
@@ -32,6 +34,32 @@ void Application::Input(){
             case SDL_KEYDOWN:
                 if(event.key.keysym.sym == SDLK_ESCAPE){
                     running = false;
+                }
+                if(event.key.keysym.sym == SDLK_UP){
+                    pushForce.y = -50 * PIXELS_PER_METER;
+                }
+                if(event.key.keysym.sym == SDLK_DOWN){
+                    pushForce.y = 50 * PIXELS_PER_METER;
+                }
+                if(event.key.keysym.sym == SDLK_LEFT){
+                    pushForce.x = -50 * PIXELS_PER_METER;
+                }
+                if(event.key.keysym.sym == SDLK_RIGHT){
+                    pushForce.x = 50 * PIXELS_PER_METER;
+                }
+                break;
+            case SDL_KEYUP:
+                if(event.key.keysym.sym == SDLK_UP){
+                    pushForce.y = 0;
+                }
+                if(event.key.keysym.sym == SDLK_DOWN){
+                    pushForce.y = 0;
+                }
+                if(event.key.keysym.sym == SDLK_LEFT){
+                    pushForce.x = 0;
+                }
+                if(event.key.keysym.sym == SDLK_RIGHT){
+                    pushForce.x = 0;
                 }
                 break;
         }
@@ -60,7 +88,9 @@ void Application::Update(){
     for(auto &particle: particles){
         Vec2 weight = Vec2(0.0f, 9.8f * particle->mass * PIXELS_PER_METER);
         particle->AddForce(weight);
+        particle->AddForce(pushForce);
     }
+    
     
     for(auto &particle: particles){
         particle->Integrate(deltaTime);
