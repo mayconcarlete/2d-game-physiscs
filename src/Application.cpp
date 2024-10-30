@@ -73,10 +73,12 @@ void Application::Input(){
                 break;
             
             case SDL_MOUSEBUTTONDOWN:
-                const auto x = static_cast<float>(event.button.x);
-                const auto y = static_cast<float>(event.button.y);
-                const auto newParticle = std::make_shared<Particle>(x, y, 2.0f, 4);
-                particles.push_back(newParticle);
+                if(event.button.button == SDL_BUTTON_LEFT){
+                    const auto x = static_cast<float>(event.button.x);
+                    const auto y = static_cast<float>(event.button.y);
+                    const auto newParticle = std::make_shared<Particle>(x, y, 2.0f, 4);
+                    particles.push_back(newParticle);
+                }
                 break;
         }
     }
@@ -98,8 +100,8 @@ void Application::Update(){
 
     for(auto &particle: particles){
         // wind force
-        const auto wind = Vec2(3.0 * PIXELS_PER_METER, 0.0 * PIXELS_PER_METER);
-        particle->AddForce(wind);
+        // const auto wind = Vec2(3.0 * PIXELS_PER_METER, 0.0 * PIXELS_PER_METER);
+        // particle->AddForce(wind);
 
         // weight force
         const auto weight = Vec2(0.0f, 9.8f * particle->mass * PIXELS_PER_METER);
