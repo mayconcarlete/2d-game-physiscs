@@ -23,7 +23,7 @@ void Application::Setup(){
     m_particles.push_back(smallParticle);
     // particles.push_back(bigParticle);
 
-    pushForce = Vec2();
+    m_pushForce = Vec2();
 
     // test Force class
     auto result = Force::GenerateFragForce(*smallParticle, 10);
@@ -45,30 +45,30 @@ void Application::Input(){
                     m_running = false;
                 }
                 if(event.key.keysym.sym == SDLK_UP){
-                    pushForce.y = -50 * PIXELS_PER_METER;
+                    m_pushForce.y = -50 * PIXELS_PER_METER;
                 }
                 if(event.key.keysym.sym == SDLK_DOWN){
-                    pushForce.y = 50 * PIXELS_PER_METER;
+                    m_pushForce.y = 50 * PIXELS_PER_METER;
                 }
                 if(event.key.keysym.sym == SDLK_LEFT){
-                    pushForce.x = -50 * PIXELS_PER_METER;
+                    m_pushForce.x = -50 * PIXELS_PER_METER;
                 }
                 if(event.key.keysym.sym == SDLK_RIGHT){
-                    pushForce.x = 50 * PIXELS_PER_METER;
+                    m_pushForce.x = 50 * PIXELS_PER_METER;
                 }
                 break;
             case SDL_KEYUP:
                 if(event.key.keysym.sym == SDLK_UP){
-                    pushForce.y = 0;
+                    m_pushForce.y = 0;
                 }
                 if(event.key.keysym.sym == SDLK_DOWN){
-                    pushForce.y = 0;
+                    m_pushForce.y = 0;
                 }
                 if(event.key.keysym.sym == SDLK_LEFT){
-                    pushForce.x = 0;
+                    m_pushForce.x = 0;
                 }
                 if(event.key.keysym.sym == SDLK_RIGHT){
-                    pushForce.x = 0;
+                    m_pushForce.x = 0;
                 }
                 break;
             
@@ -106,7 +106,7 @@ void Application::Update(){
         // weight force
         const auto weight = Vec2(0.0f, 9.8f * particle->mass * PIXELS_PER_METER);
         particle->AddForce(weight);
-        particle->AddForce(pushForce);
+        particle->AddForce(m_pushForce);
 
         // drag force
         if(particle->position.y >= liquid.y){
