@@ -74,9 +74,9 @@ void Application::Input(){
             
             case SDL_MOUSEBUTTONDOWN:
                 if(event.button.button == SDL_BUTTON_LEFT){
-                    const auto x = static_cast<float>(event.button.x);
-                    const auto y = static_cast<float>(event.button.y);
-                    const auto newParticle = std::make_shared<Particle>(x, y, 2.0f, 4);
+                    std::int32_t x, y;
+                    SDL_GetMouseState(&x, &y);
+                    const auto newParticle = std::make_shared<Particle>(static_cast<float>(x), static_cast<float>(y), 2.0f, 4);
                     particles.push_back(newParticle);
                 }
                 break;
