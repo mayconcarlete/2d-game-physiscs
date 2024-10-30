@@ -9,7 +9,7 @@
 #include "Physics/Force.hpp"
 
 bool Application::IsRunning(){
-    return running;
+    return m_running;
 }
 
 void Application::Setup(){
@@ -17,7 +17,7 @@ void Application::Setup(){
     std::uint32_t width = window_width;
     std::uint32_t height = window_height;
     graphics = new Graphics(width, height);
-    running = graphics->OpenWindow();
+    m_running = graphics->OpenWindow();
     auto smallParticle = new Particle(50.0f, 50.0f, 1.0f, 4);
     // auto bigParticle = std::make_shared<Particle>(100.0f, 50.0f, 4.0f, 12);
     particles.push_back(smallParticle);
@@ -38,11 +38,11 @@ void Application::Input(){
     while(SDL_PollEvent(&event)){
         switch(event.type){
             case SDL_QUIT:
-                running = false;
+                m_running = false;
                 break;
             case SDL_KEYDOWN:
                 if(event.key.keysym.sym == SDLK_ESCAPE){
-                    running = false;
+                    m_running = false;
                 }
                 if(event.key.keysym.sym == SDLK_UP){
                     pushForce.y = -50 * PIXELS_PER_METER;
