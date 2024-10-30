@@ -13,7 +13,7 @@ class Application {
     private:
         bool m_running = false;
         Graphics* m_graphics;
-        std::vector<Particle*> particles;
+        std::vector<Particle*> m_particles;
         Vec2 pushForce;
         SDL_Rect liquid;
         

@@ -20,7 +20,7 @@ void Application::Setup(){
     m_running = m_graphics->OpenWindow();
     auto smallParticle = new Particle(50.0f, 50.0f, 1.0f, 4);
     // auto bigParticle = std::make_shared<Particle>(100.0f, 50.0f, 4.0f, 12);
-    particles.push_back(smallParticle);
+    m_particles.push_back(smallParticle);
     // particles.push_back(bigParticle);
 
     pushForce = Vec2();
@@ -77,7 +77,7 @@ void Application::Input(){
                     std::int32_t x, y;
                     SDL_GetMouseState(&x, &y);
                     const auto newParticle = new Particle(static_cast<float>(x), static_cast<float>(y), 2.0f, 4);
-                    particles.push_back(newParticle);
+                    m_particles.push_back(newParticle);
                 }
                 break;
         }
@@ -98,7 +98,7 @@ void Application::Update(){
     }
     timePreviousFrame = SDL_GetTicks64();
 
-    for(auto &particle: particles){
+    for(auto &particle: m_particles){
         // wind force
         // const auto wind = Vec2(3.0 * PIXELS_PER_METER, 0.0 * PIXELS_PER_METER);
         // particle->AddForce(wind);
@@ -116,7 +116,7 @@ void Application::Update(){
     }
     
 
-    for(auto &particle: particles){
+    for(auto &particle: m_particles){
         particle->Integrate(deltaTime);
 
         // check particle position
@@ -142,7 +142,7 @@ void Application::Update(){
 void Application::Render(){
     m_graphics->ClearScreen(0xFF056263);
     m_graphics->DrawFillRect(liquid.x + liquid.w / 2, liquid.y + liquid.h / 2, liquid.w, liquid.h, 0xFF6E3713);
-    for(auto &particle: particles){   
+    for(auto &particle: m_particles){   
         m_graphics->DrawFillCircle(particle->position.x, particle->position.y, particle->radius, 0xFFFFFFFF);
         
         // graphics->DrawGizmo(particle->velocity.Normalize(), 2.0);
@@ -153,7 +153,7 @@ void Application::Render(){
 
 void Application::Destroy(){
     // delete particles
-    for(auto particle: particles){
+    for(auto particle: m_particles){
         delete particle;
     }
 
