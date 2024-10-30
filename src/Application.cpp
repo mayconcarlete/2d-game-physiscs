@@ -16,8 +16,8 @@ void Application::Setup(){
 
     std::uint32_t width = window_width;
     std::uint32_t height = window_height;
-    graphics = new Graphics(width, height);
-    m_running = graphics->OpenWindow();
+    m_graphics = new Graphics(width, height);
+    m_running = m_graphics->OpenWindow();
     auto smallParticle = new Particle(50.0f, 50.0f, 1.0f, 4);
     // auto bigParticle = std::make_shared<Particle>(100.0f, 50.0f, 4.0f, 12);
     particles.push_back(smallParticle);
@@ -140,15 +140,15 @@ void Application::Update(){
 }
 // std::vector<Vec2> v {Vec2(0,0), Vec2(100, 0), Vec2(100, 100), Vec2(0, 100)};
 void Application::Render(){
-    graphics->ClearScreen(0xFF056263);
-    graphics->DrawFillRect(liquid.x + liquid.w / 2, liquid.y + liquid.h / 2, liquid.w, liquid.h, 0xFF6E3713);
+    m_graphics->ClearScreen(0xFF056263);
+    m_graphics->DrawFillRect(liquid.x + liquid.w / 2, liquid.y + liquid.h / 2, liquid.w, liquid.h, 0xFF6E3713);
     for(auto &particle: particles){   
-        graphics->DrawFillCircle(particle->position.x, particle->position.y, particle->radius, 0xFFFFFFFF);
+        m_graphics->DrawFillCircle(particle->position.x, particle->position.y, particle->radius, 0xFFFFFFFF);
         
         // graphics->DrawGizmo(particle->velocity.Normalize(), 2.0);
     }
     // draw the liquid in the screen
-    graphics->RenderFrame();
+    m_graphics->RenderFrame();
 }
 
 void Application::Destroy(){
@@ -158,6 +158,6 @@ void Application::Destroy(){
     }
 
     // delete graphics
-    graphics->CloseWindow();
-    delete graphics;
+    m_graphics->CloseWindow();
+    delete m_graphics;
 }
