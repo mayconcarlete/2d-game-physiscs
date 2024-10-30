@@ -26,12 +26,11 @@ void Application::Setup(){
     pushForce = Vec2();
 
     // test Force class
-    auto p = Particle(10, 20, 10, 3);
-    auto result = Force::GenerateFragForce(p, 10);
-    std::cout << "###############" << std::endl;
-    
-    result.Print();
-    std::cout << "###############" << std::endl;
+    auto result = Force::GenerateFragForce(smallParticle, 10);
+    liquid.x = 0;
+    liquid.y = window_height / 2;
+    liquid.w = window_width;
+    liquid.h = window_height / 2;
 }
 
 void Application::Input(){
@@ -72,6 +71,13 @@ void Application::Input(){
                     pushForce.x = 0;
                 }
                 break;
+            
+            case SDL_MOUSEBUTTONDOWN:
+                const auto x = static_cast<float>(event.button.x);
+                const auto y = static_cast<float>(event.button.y);
+                const auto newParticle = std::make_shared<Particle>(x, y, 2.0f, 4);
+                particles.push_back(newParticle);
+                break;
         }
     }
 }
@@ -90,15 +96,21 @@ void Application::Update(){
     }
     timePreviousFrame = SDL_GetTicks64();
 
-    // for(auto &particle: particles){
-    //     Vec2 wind = Vec2(10.0 * PIXELS_PER_METER, 0.0 * PIXELS_PER_METER);
-    //     particle->AddForce(wind);
-    // }
-    
     for(auto &particle: particles){
-        Vec2 weight = Vec2(0.0f, 9.8f * particle->mass * PIXELS_PER_METER);
+        // wind force
+        const auto wind = Vec2(3.0 * PIXELS_PER_METER, 0.0 * PIXELS_PER_METER);
+        particle->AddForce(wind);
+
+        // weight force
+        const auto weight = Vec2(0.0f, 9.8f * particle->mass * PIXELS_PER_METER);
         particle->AddForce(weight);
         particle->AddForce(pushForce);
+
+        // drag force
+        if(particle->position.y >= liquid.y){
+            const auto dragForce = Force::GenerateFragForce(particle, 0.04);
+            particle->AddForce(dragForce);
+        }
     }
     
 
@@ -127,11 +139,13 @@ void Application::Update(){
 // std::vector<Vec2> v {Vec2(0,0), Vec2(100, 0), Vec2(100, 100), Vec2(0, 100)};
 void Application::Render(){
     graphics->ClearScreen(0xFF056263);
+    graphics->DrawFillRect(liquid.x + liquid.w / 2, liquid.y + liquid.h / 2, liquid.w, liquid.h, 0xFF6E3713);
     for(auto &particle: particles){   
         graphics->DrawFillCircle(particle->position.x, particle->position.y, particle->radius, 0xFFFFFFFF);
         
         // graphics->DrawGizmo(particle->velocity.Normalize(), 2.0);
     }
+    // draw the liquid in the screen
     graphics->RenderFrame();
 }
 

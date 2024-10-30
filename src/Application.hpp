@@ -7,6 +7,7 @@
 #include "Graphics.hpp"
 #include "Physics/Vec2.hpp"
 #include "Physics/Particle.hpp"
+#include "SDL2/SDL.h"
 
 class Application {
     private:
@@ -14,6 +15,8 @@ class Application {
         std::unique_ptr<Graphics> graphics;
         std::vector<std::shared_ptr<Particle>> particles;
         Vec2 pushForce;
+        SDL_Rect liquid;
+        
     public:
         Application() = default;
         ~Application() = default;
