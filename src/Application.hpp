@@ -15,7 +15,7 @@ class Application {
         Graphics* m_graphics;
         std::vector<Particle*> m_particles;
         Vec2 m_pushForce;
-        SDL_Rect liquid;
+        SDL_Rect m_liquid;
         
     public:
         Application() = default;

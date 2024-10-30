@@ -27,10 +27,10 @@ void Application::Setup(){
 
     // test Force class
     auto result = Force::GenerateFragForce(*smallParticle, 10);
-    liquid.x = 0;
-    liquid.y = window_height / 2;
-    liquid.w = window_width;
-    liquid.h = window_height / 2;
+    m_liquid.x = 0;
+    m_liquid.y = window_height / 2;
+    m_liquid.w = window_width;
+    m_liquid.h = window_height / 2;
 }
 
 void Application::Input(){
@@ -109,7 +109,7 @@ void Application::Update(){
         particle->AddForce(m_pushForce);
 
         // drag force
-        if(particle->position.y >= liquid.y){
+        if(particle->position.y >= m_liquid.y){
             const auto dragForce = Force::GenerateFragForce(*particle, 0.04);
             particle->AddForce(dragForce);
         }
@@ -141,7 +141,7 @@ void Application::Update(){
 // std::vector<Vec2> v {Vec2(0,0), Vec2(100, 0), Vec2(100, 100), Vec2(0, 100)};
 void Application::Render(){
     m_graphics->ClearScreen(0xFF056263);
-    m_graphics->DrawFillRect(liquid.x + liquid.w / 2, liquid.y + liquid.h / 2, liquid.w, liquid.h, 0xFF6E3713);
+    m_graphics->DrawFillRect(m_liquid.x + m_liquid.w / 2, m_liquid.y + m_liquid.h / 2, m_liquid.w, m_liquid.h, 0xFF6E3713);
     for(auto &particle: m_particles){   
         m_graphics->DrawFillCircle(particle->position.x, particle->position.y, particle->radius, 0xFFFFFFFF);
         
