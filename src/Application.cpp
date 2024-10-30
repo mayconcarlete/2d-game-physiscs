@@ -16,9 +16,9 @@ void Application::Setup(){
 
     std::uint32_t width = window_width;
     std::uint32_t height = window_height;
-    graphics = std::make_unique<Graphics>(width, height);
+    graphics = new Graphics(width, height);
     running = graphics->OpenWindow();
-    auto smallParticle = std::make_shared<Particle>(50.0f, 50.0f, 1.0f, 4);
+    auto smallParticle = new Particle(50.0f, 50.0f, 1.0f, 4);
     // auto bigParticle = std::make_shared<Particle>(100.0f, 50.0f, 4.0f, 12);
     particles.push_back(smallParticle);
     // particles.push_back(bigParticle);
@@ -26,7 +26,7 @@ void Application::Setup(){
     pushForce = Vec2();
 
     // test Force class
-    auto result = Force::GenerateFragForce(smallParticle, 10);
+    auto result = Force::GenerateFragForce(*smallParticle, 10);
     liquid.x = 0;
     liquid.y = window_height / 2;
     liquid.w = window_width;
@@ -76,7 +76,7 @@ void Application::Input(){
                 if(event.button.button == SDL_BUTTON_LEFT){
                     std::int32_t x, y;
                     SDL_GetMouseState(&x, &y);
-                    const auto newParticle = std::make_shared<Particle>(static_cast<float>(x), static_cast<float>(y), 2.0f, 4);
+                    const auto newParticle = new Particle(static_cast<float>(x), static_cast<float>(y), 2.0f, 4);
                     particles.push_back(newParticle);
                 }
                 break;
@@ -110,7 +110,7 @@ void Application::Update(){
 
         // drag force
         if(particle->position.y >= liquid.y){
-            const auto dragForce = Force::GenerateFragForce(particle, 0.04);
+            const auto dragForce = Force::GenerateFragForce(*particle, 0.04);
             particle->AddForce(dragForce);
         }
     }
@@ -152,6 +152,12 @@ void Application::Render(){
 }
 
 void Application::Destroy(){
-    // delete &particles;
+    // delete particles
+    for(auto particle: particles){
+        delete particle;
+    }
+
+    // delete graphics
     graphics->CloseWindow();
+    delete graphics;
 }

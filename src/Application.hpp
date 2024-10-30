@@ -12,8 +12,8 @@
 class Application {
     private:
         bool running = false;
-        std::unique_ptr<Graphics> graphics;
-        std::vector<std::shared_ptr<Particle>> particles;
+        Graphics* graphics;
+        std::vector<Particle*> particles;
         Vec2 pushForce;
         SDL_Rect liquid;
         
