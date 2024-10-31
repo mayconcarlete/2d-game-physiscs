@@ -104,15 +104,18 @@ void Application::Update(){
         // particle->AddForce(wind);
 
         // weight force
-        const auto weight = Vec2(0.0f, 9.8f * particle->mass * PIXELS_PER_METER);
-        particle->AddForce(weight);
-        particle->AddForce(m_pushForce);
+        // const auto weight = Vec2(0.0f, 9.8f * particle->mass * PIXELS_PER_METER);
+        // particle->AddForce(weight);
 
+        // Friction Force
+        Vec2 frictionForce = Force::GenerateFrictionForce(*particle, 10.0f * PIXELS_PER_METER);
+        particle->AddForce(m_pushForce);
+        particle->AddForce(frictionForce);
         // drag force
-        if(particle->position.y >= m_liquid.y){
-            const auto dragForce = Force::GenerateFragForce(*particle, 0.04);
-            particle->AddForce(dragForce);
-        }
+        // if(particle->position.y >= m_liquid.y){
+        //     const auto dragForce = Force::GenerateFragForce(*particle, 0.04);
+        //     particle->AddForce(dragForce);
+        // }
     }
     
 

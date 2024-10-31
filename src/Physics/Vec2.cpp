@@ -50,12 +50,12 @@ Vec2& Vec2::Normalize() {
 
 Vec2 Vec2::UnitVector() const {
     const auto magnitude = Magnitude();
+    Vec2 result = Vec2();
     if(magnitude > 0) {
-        Vec2 result;
         result.x = x / magnitude;
         result.y = y / magnitude;
-        return result;
     }
+    return result;
 }
 
 Vec2 Vec2::Normal() const { // Perpendicular
