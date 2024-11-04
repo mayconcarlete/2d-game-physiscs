@@ -32,9 +32,14 @@ void Application::Setup(){
     m_liquid.w = window_width;
     m_liquid.h = window_height / 2;
 }
+static bool mouseButtonClicked = false;
+static std::int32_t mouseXBegin = 0, mouseYBegin = 0;
+static std::int32_t mouseXFinal = mouseXBegin, mouseYFinal = mouseYBegin;
 
 void Application::Input(){
     SDL_Event event;
+
+
     while(SDL_PollEvent(&event)){
         switch(event.type){
             case SDL_QUIT:
@@ -73,11 +78,19 @@ void Application::Input(){
                 break;
             
             case SDL_MOUSEBUTTONDOWN:
+                SDL_GetMouseState(&mouseXBegin, &mouseYBegin);
                 if(event.button.button == SDL_BUTTON_LEFT){
-                    std::int32_t x, y;
-                    SDL_GetMouseState(&x, &y);
-                    const auto newParticle = new Particle(static_cast<float>(x), static_cast<float>(y), 2.0f, 4);
-                    m_particles.push_back(newParticle);
+                    std::cout << "Mouse click!" << "\n";
+                    if(mouseButtonClicked == false){
+                        mouseButtonClicked = true;
+                    }
+                    // const auto newParticle = new Particle(static_cast<float>(x), static_cast<float>(y), 2.0f, 4);
+                    // m_particles.push_back(newParticle);
+                }
+                break;
+            case SDL_MOUSEBUTTONUP:
+                if(event.button.button == SDL_BUTTON_LEFT){
+                    mouseButtonClicked = false;
                 }
                 break;
         }
@@ -145,6 +158,11 @@ void Application::Update(){
 void Application::Render(){
     m_graphics->ClearScreen(0xFF056263);
     m_graphics->DrawFillRect(m_liquid.x + m_liquid.w / 2, m_liquid.y + m_liquid.h / 2, m_liquid.w, m_liquid.h, 0xFF6E3713);
+    if(mouseButtonClicked){
+        SDL_GetMouseState(&mouseXFinal, &mouseYFinal);
+        std::cout << "Mouse click up." << " X0: " << mouseXBegin  << " Y0: " <<mouseYBegin << " X: " <<mouseXFinal << " Y: " <<mouseYFinal << "\n";
+        m_graphics->DrawLine(mouseXBegin, mouseYBegin ,mouseXFinal, mouseYFinal, 0xFF0000FF);
+    }
     for(auto &particle: m_particles){   
         m_graphics->DrawFillCircle(particle->position.x, particle->position.y, particle->radius, 0xFFFFFFFF);
         
