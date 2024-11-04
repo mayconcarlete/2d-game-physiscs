@@ -26,7 +26,7 @@ void Application::Setup(){
     m_pushForce = Vec2();
 
     // test Force class
-    auto result = Force::GenerateFragForce(*smallParticle, 10);
+    auto result = Force::GenerateDragForce(*smallParticle, 10);
     m_liquid.x = 0;
     m_liquid.y = window_height / 2;
     m_liquid.w = window_width;

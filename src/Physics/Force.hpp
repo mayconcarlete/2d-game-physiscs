@@ -9,7 +9,7 @@
 
 class Force {
     public:
-        static Vec2 GenerateFragForce(const Particle& p, float k){
+        static Vec2 GenerateDragForce(const Particle& p, float k){
             auto dragForce = Vec2();
             auto magnitudeSquared = p.velocity.MagnitudeSquared();
 
