@@ -80,10 +80,18 @@ void Application::Input(){
             case SDL_MOUSEBUTTONDOWN:
                 SDL_GetMouseState(&mouseXBegin, &mouseYBegin);
                 if(event.button.button == SDL_BUTTON_LEFT){
-                    std::cout << "Mouse click!" << "\n";
-                    if(mouseButtonClicked == false){
-                        mouseButtonClicked = true;
+                    for(auto &particle : m_particles){
+                        if( (mouseXBegin >= particle->position.x - particle->radius && mouseXBegin <= particle->position.x + particle->radius) &&
+                            (mouseYBegin >= particle->position.y - particle->radius && mouseYBegin <= particle->position.y + particle->radius)
+                        ){
+                             std::cout << "Mouse click!" << "\n";
+                            if(mouseButtonClicked == false){
+                                mouseButtonClicked = true;
+                            }
+                        }
                     }
+
+                   
                     // const auto newParticle = new Particle(static_cast<float>(x), static_cast<float>(y), 2.0f, 4);
                     // m_particles.push_back(newParticle);
                 }
@@ -91,6 +99,8 @@ void Application::Input(){
             case SDL_MOUSEBUTTONUP:
                 if(event.button.button == SDL_BUTTON_LEFT){
                     mouseButtonClicked = false;
+                    m_pushForce.x = (mouseXFinal - mouseXBegin) * PIXELS_PER_METER;
+                    m_pushForce.y = (mouseYFinal - mouseYBegin) * PIXELS_PER_METER;
                 }
                 break;
         }
