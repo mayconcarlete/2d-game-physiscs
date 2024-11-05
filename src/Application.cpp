@@ -84,9 +84,9 @@ void Application::Input(){
                         if( (mouseXBegin >= particle->position.x - particle->radius && mouseXBegin <= particle->position.x + particle->radius) &&
                             (mouseYBegin >= particle->position.y - particle->radius && mouseYBegin <= particle->position.y + particle->radius)
                         ){
-                             std::cout << "Mouse click!" << "\n";
                             if(mouseButtonClicked == false){
                                 mouseButtonClicked = true;
+                                m_mouse_force = Vec2(mouseXBegin, mouseYBegin);
                             }
                         }
                     }
@@ -99,8 +99,8 @@ void Application::Input(){
             case SDL_MOUSEBUTTONUP:
                 if(event.button.button == SDL_BUTTON_LEFT){
                     mouseButtonClicked = false;
-                    m_pushForce.x = (mouseXFinal - mouseXBegin) * PIXELS_PER_METER;
-                    m_pushForce.y = (mouseYFinal - mouseYBegin) * PIXELS_PER_METER;
+                    m_mouse_force -= Vec2(mouseXFinal, mouseYFinal);
+                    std::cout << "Magnitude: "<<m_mouse_force.Magnitude() << "\n";
                 }
                 break;
         }
@@ -134,6 +134,7 @@ void Application::Update(){
         Vec2 frictionForce = Force::GenerateFrictionForce(*particle, 10.0f * PIXELS_PER_METER);
         particle->AddForce(m_pushForce);
         particle->AddForce(frictionForce);
+        particle->AddForce(m_mouse_force * PIXELS_PER_METER);
         // drag force
         // if(particle->position.y >= m_liquid.y){
         //     const auto dragForce = Force::GenerateFragForce(*particle, 0.04);
@@ -170,7 +171,7 @@ void Application::Render(){
     m_graphics->DrawFillRect(m_liquid.x + m_liquid.w / 2, m_liquid.y + m_liquid.h / 2, m_liquid.w, m_liquid.h, 0xFF6E3713);
     if(mouseButtonClicked){
         SDL_GetMouseState(&mouseXFinal, &mouseYFinal);
-        std::cout << "Mouse click up." << " X0: " << mouseXBegin  << " Y0: " <<mouseYBegin << " X: " <<mouseXFinal << " Y: " <<mouseYFinal << "\n";
+        // std::cout << "Mouse click up." << " X0: " << mouseXBegin  << " Y0: " <<mouseYBegin << " X: " <<mouseXFinal << " Y: " <<mouseYFinal << "\n";
         m_graphics->DrawLine(mouseXBegin, mouseYBegin ,mouseXFinal, mouseYFinal, 0xFF0000FF);
     }
     for(auto &particle: m_particles){   
