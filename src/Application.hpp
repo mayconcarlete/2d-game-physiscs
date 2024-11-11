@@ -17,7 +17,7 @@ class Application {
         Vec2 m_pushForce;
         Vec2 m_mouse_force;
         SDL_Rect m_liquid;
-        
+        Vec2 mouseCursor;
     public:
         Application() = default;
         ~Application() = default;

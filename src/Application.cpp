@@ -76,31 +76,28 @@ void Application::Input(){
                     m_pushForce.x = 0;
                 }
                 break;
-            
-            case SDL_MOUSEBUTTONDOWN:
-                SDL_GetMouseState(&mouseXBegin, &mouseYBegin);
-                if(event.button.button == SDL_BUTTON_LEFT){
-                    for(auto &particle : m_particles){
-                        if( (mouseXBegin >= particle->position.x - particle->radius && mouseXBegin <= particle->position.x + particle->radius) &&
-                            (mouseYBegin >= particle->position.y - particle->radius && mouseYBegin <= particle->position.y + particle->radius)
-                        ){
-                            if(mouseButtonClicked == false){
-                                mouseButtonClicked = true;
-                                m_mouse_force = Vec2(mouseXBegin, mouseYBegin);
-                            }
-                        }
-                    }
 
-                   
-                    // const auto newParticle = new Particle(static_cast<float>(x), static_cast<float>(y), 2.0f, 4);
-                    // m_particles.push_back(newParticle);
+            case SDL_MOUSEMOTION:
+                mouseCursor.x = event.motion.x;
+                mouseCursor.y = event.motion.y;
+                break;
+
+            case SDL_MOUSEBUTTONDOWN:
+                if(!mouseButtonClicked && event.button.button == SDL_BUTTON_LEFT){
+                    mouseButtonClicked = true;
+                    int x,y;
+                    SDL_GetMouseState(&x, &y);
+                    mouseCursor.x = x;
+                    mouseCursor.y = y;
                 }
                 break;
+
             case SDL_MOUSEBUTTONUP:
-                if(event.button.button == SDL_BUTTON_LEFT){
+                if(mouseButtonClicked && event.button.button == SDL_BUTTON_LEFT){
                     mouseButtonClicked = false;
-                    m_mouse_force -= Vec2(mouseXFinal, mouseYFinal);
-                    std::cout << "Magnitude: "<<m_mouse_force.Magnitude() << "\n";
+                    Vec2 impulseDirection = (m_particles[0]->position - mouseCursor).UnitVector();
+                    float impulseMagnitude = (m_particles[0]->position - mouseCursor).Magnitude() * 5.0f;
+                    m_particles[0]->velocity = impulseDirection * impulseMagnitude;
                 }
                 break;
         }
@@ -132,7 +129,7 @@ void Application::Update(){
 
         // Friction Force
         Vec2 frictionForce = Force::GenerateFrictionForce(*particle, 10.0f * PIXELS_PER_METER);
-        particle->AddForce(m_pushForce);
+        // particle->AddForce(m_pushForce);
         particle->AddForce(frictionForce);
         particle->AddForce(m_mouse_force * PIXELS_PER_METER);
         // drag force
@@ -170,9 +167,12 @@ void Application::Render(){
     m_graphics->ClearScreen(0xFF056263);
     m_graphics->DrawFillRect(m_liquid.x + m_liquid.w / 2, m_liquid.y + m_liquid.h / 2, m_liquid.w, m_liquid.h, 0xFF6E3713);
     if(mouseButtonClicked){
-        SDL_GetMouseState(&mouseXFinal, &mouseYFinal);
+        int x, y;
+        x;
+        y;
+        SDL_GetMouseState(&x, &y);
         // std::cout << "Mouse click up." << " X0: " << mouseXBegin  << " Y0: " <<mouseYBegin << " X: " <<mouseXFinal << " Y: " <<mouseYFinal << "\n";
-        m_graphics->DrawLine(mouseXBegin, mouseYBegin ,mouseXFinal, mouseYFinal, 0xFF0000FF);
+        m_graphics->DrawLine(mouseCursor.x, mouseCursor.y ,mouseXFinal, mouseYFinal, 0xFF0000FF);
     }
     for(auto &particle: m_particles){   
         m_graphics->DrawFillCircle(particle->position.x, particle->position.y, particle->radius, 0xFFFFFFFF);
