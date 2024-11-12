@@ -2,7 +2,7 @@
 #define FORCE_H
 
 #include <memory>
-#include <iostream>>
+#include <iostream>
 
 #include "Vec2.hpp"
 #include "Particle.hpp"
